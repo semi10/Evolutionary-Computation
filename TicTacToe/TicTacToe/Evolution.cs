@@ -17,7 +17,7 @@ namespace TicTacToe
         private bool selectRandomMaxIndex;
         private Individual frankyOriginal;
         private Individual franky;
-        private bool playTournament;
+        private bool playTournamentBool;
         private bool playWithFranky;
         //private CSV_Writer reportGenerator;
 
@@ -32,7 +32,7 @@ namespace TicTacToe
             this.game = new Game(board);
             this.selectRandomMaxIndex = selectRandomMaxIndex;
             this.playEveryNGame = playEveryNGame;
-            this.playTournament = playTournament;
+            this.playTournamentBool = playTournament;
 
         }
 
@@ -55,7 +55,7 @@ namespace TicTacToe
 
         public void setTournaments(bool playTournament)
         {
-            this.playTournament = playTournament;
+            this.playTournamentBool = playTournament;
         }
 
         public Individual evolve()
@@ -65,7 +65,7 @@ namespace TicTacToe
              * each generation is a tournament where each individual play a two set game against all other individuals
              */
             int gen;
-            if (!playTournament)
+            if (!playTournamentBool)
             {
                 Console.WriteLine("You must play a game!");
                 // need exit here
@@ -80,8 +80,8 @@ namespace TicTacToe
             // create the report file
             //createReportFile();
             // scores arrays for graph plotting
-            List<Double> avgFitness = new ArrayList();
-            List<Double> bestFitness = new ArrayList();
+            List<double> avgFitness = new List<double>();
+            List<double> bestFitness = new List<double>();
             //List<Double> frankyOriginalFitness = new ArrayList<Double>();
             //List<Double> frankyFitness = new ArrayList<Double>();
 
@@ -92,7 +92,7 @@ namespace TicTacToe
                 lastRoundStart = currentTimeMillis();
                 // reset all individuals game results
                 population.resetGameStats();
-                if (playTournament)
+                if (playTournamentBool)
                 {
                     // play the tournament
                     playTournament();
@@ -168,8 +168,8 @@ namespace TicTacToe
                 Console.WriteLine("Solution: " + getBest());
 
             // plot result graphs
-            population.showGraph(avgFitness, "Average Fitness Graph");
-            population.showGraph(bestFitness, "Best Fitness Graph");
+            //population.showGraph(avgFitness, "Average Fitness Graph");
+            //population.showGraph(bestFitness, "Best Fitness Graph");
             /*if (playWithFranky)
             {
                 population.showGraph(frankyOriginalFitness, "Original Franky Fitness Graph");

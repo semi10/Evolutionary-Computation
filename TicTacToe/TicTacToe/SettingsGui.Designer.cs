@@ -47,6 +47,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.mutationProb = new System.Windows.Forms.ComboBox();
             this.runEvo = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.funcSet = new System.Windows.Forms.CheckedListBox();
+            this.terminalSet = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // individualDepth
@@ -291,18 +295,83 @@
             // 
             // runEvo
             // 
-            this.runEvo.Location = new System.Drawing.Point(232, 217);
+            this.runEvo.Location = new System.Drawing.Point(300, 328);
             this.runEvo.Name = "runEvo";
             this.runEvo.Size = new System.Drawing.Size(114, 37);
             this.runEvo.TabIndex = 18;
             this.runEvo.Text = "Run Evolution";
             this.runEvo.UseVisualStyleBackColor = true;
+            this.runEvo.Click += new System.EventHandler(this.runEvo_Click);
+            // 
+            // label10
+            // 
+            this.label10.AccessibleName = "";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 273);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(67, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Tag = "funcSet";
+            this.label10.Text = "Function Set";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(165, 242);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(66, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Terminal Set";
+            // 
+            // funcSet
+            // 
+            this.funcSet.AccessibleName = "funcSet";
+            this.funcSet.FormattingEnabled = true;
+            this.funcSet.Items.AddRange(new object[] {
+            "If>=",
+            "If<=",
+            "Plus",
+            "Minus",
+            "Multi"});
+            this.funcSet.Location = new System.Drawing.Point(81, 242);
+            this.funcSet.Name = "funcSet";
+            this.funcSet.Size = new System.Drawing.Size(67, 79);
+            this.funcSet.TabIndex = 21;
+            this.funcSet.Tag = "funcSet";
+            // 
+            // terminalSet
+            // 
+            this.terminalSet.AccessibleName = "termSet";
+            this.terminalSet.FormattingEnabled = true;
+            this.terminalSet.Items.AddRange(new object[] {
+            "CountNeighbors",
+            "CornerCount",
+            "WinOrBlock",
+            "CountRow",
+            "CountColumn",
+            "CountDiagMain",
+            "CountDiagSec",
+            "RowStreak",
+            "ColumnStreak",
+            "DiagMainStreak",
+            "DiagSecStreak",
+            "RandVal",
+            "IsRandIndex"});
+            this.terminalSet.Location = new System.Drawing.Point(237, 208);
+            this.terminalSet.Name = "terminalSet";
+            this.terminalSet.Size = new System.Drawing.Size(120, 94);
+            this.terminalSet.TabIndex = 22;
+            this.terminalSet.Tag = "terminalSet";
             // 
             // SettingsGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 272);
+            this.ClientSize = new System.Drawing.Size(426, 377);
+            this.Controls.Add(this.terminalSet);
+            this.Controls.Add(this.funcSet);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.runEvo);
             this.Controls.Add(this.mutationProb);
             this.Controls.Add(this.label9);
@@ -350,5 +419,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox mutationProb;
         private System.Windows.Forms.Button runEvo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckedListBox funcSet;
+        private System.Windows.Forms.CheckedListBox terminalSet;
     }
 }
