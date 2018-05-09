@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Individual
+    public class Individual
     {
         private string playerName;
         private double fitness;
@@ -410,7 +410,7 @@ namespace TicTacToe
              */
 
             // create an array of indexes
-            List<int> maxIndexesArray = new List<int>();
+            List<int> maxIndexesAfinalrray = new List<int>();
             // iterate all indexes and add the indexes of the max ones
             for (int i = 0; i < gradesBoard.Length; i++)
             {
