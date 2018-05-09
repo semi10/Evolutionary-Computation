@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Individual
+    public class Individual
     {
         private string playerName;
         private double fitness;
@@ -63,6 +63,16 @@ namespace TicTacToe
             draws = new int[2];
         }
 
+        public void setPlayerName(String playerName)
+        {
+            this.playerName = playerName;
+        }
+
+        public String getPlayerName()
+        {
+            return playerName;
+        }
+
         public void setFunctionList(String[] functionList)
         {
             if (functionList != null)
@@ -86,13 +96,13 @@ namespace TicTacToe
         }
         public String getRandomFunction()
         {
-            String function = functionList[(int)(rnd.Next(0, 1) * functionList.Length)];
+            String function = functionList[(int)(rnd.NextDouble() * functionList.Length)];
             return function;
         }
 
         public String getRandomTerminal()
         {
-            String terminal = terminalList[(int)(rnd.Next(0, 1) * terminalList.Length)];
+            String terminal = terminalList[(int)(rnd.NextDouble() * terminalList.Length)];
             return terminal;
         }
         public void addDraw(bool started)
@@ -215,7 +225,7 @@ namespace TicTacToe
              */
             Random rand = new Random();
             int randNum;
-            final int MIN = 2;
+            const int MIN = 2;
             Individual[] children = new Individual[2];
             children[0] = new Individual(this);
             children[1] = new Individual(otherIndividual);
@@ -224,13 +234,14 @@ namespace TicTacToe
             GPNode swap2 = null;
 
             // randomize a number ranging from 2....nodesAmount of first parent
-            randNum = rand.nextInt(children[0].getStrategyRoot().countNodes() - MIN + 1) + MIN;
+
+            randNum = rnd.Next(children[0].getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original first parent
             this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.red);
             // get the first random node reference
             swap1 = children[0].getStrategyRoot().getNode(children[0].getStrategyRoot(), randNum);
             // randomize a number ranging from 2....nodesAmount of second parent
-            randNum = rand.nextInt(children[1].getStrategyRoot().countNodes() - MIN + 1) + MIN;
+            randNum = rnd.Next(children[1].getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original second parent
             otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.red);
             // get the second random node reference
@@ -258,19 +269,19 @@ namespace TicTacToe
              */
             Random rand = new Random();
             int randNum;
-            final int MIN = 2;
+            const int MIN = 2;
             // GPNode objects to temporary hold the returned references
             GPNode swap1 = null;
             GPNode swap2 = null;
 
             // randomize a number ranging from 2....nodesAmount of first parent
-            randNum = rand.nextInt(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
+            randNum = rnd.Next(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original first parent
             this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.red);
             // get the first random node reference
             swap1 = this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum);
             // randomize a number ranging from 2....nodesAmount of second parent
-            randNum = rand.nextInt(otherIndividual.getStrategyRoot().countNodes() - MIN + 1) + MIN;
+            randNum = rnd.Next(otherIndividual.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original second parent
             otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.red);
             // get the second random node reference
@@ -285,8 +296,8 @@ namespace TicTacToe
             this.getStrategyRoot().swapNodes(swap1, swap2.copy(swap2));
 
             // combine the parents name to create a new name
-            this.setPlayerName(this.getPlayerName().substring(0, this.getPlayerName().length() / 2) +
-                    otherIndividual.getPlayerName().substring(otherIndividual.getPlayerName().length() / 2 - 1, otherIndividual.getPlayerName().length() - 1));
+            this.setPlayerName(this.getPlayerName().substring(0, this.getPlayerName().Length / 2) +
+                    otherIndividual.getPlayerName().substring(otherIndividual.getPlayerName().Length / 2 - 1, otherIndividual.getPlayerName().Length - 1));
             return this;
         }
 
@@ -299,13 +310,14 @@ namespace TicTacToe
             Random rand = new Random();
             int randNum;
             Individual mutatedIndividual = new Individual(this);
-            final int MIN = 2;
+            const int MIN = 2;
             GPNode mutateNode = null;
             GPNode mutateNodeSwap = null;
-            randNum = rand.nextInt(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
+            randNum = rnd.Next(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             mutateNode = mutatedIndividual.getStrategyRoot().getNode(mutatedIndividual.getStrategyRoot(), randNum - 1);
 
-            if (mutateNode instanceof Terminal){
+            if (mutateNode.GetType() == typeof(Terminal))
+            {
                 // if the selected node is a terminal,
                 // set it to another random terminal
                 ((Terminal)mutateNode).setRandTerminal();
@@ -328,7 +340,7 @@ namespace TicTacToe
              */
             this.getStrategyRoot().trim(maxDepth - 1, this);
         }
-        public boolean generateRandomStrategy(int maxDepth)
+        public bool generateRandomStrategy(int maxDepth)
         {
             /*
              * generate a random strategy tree by initializing
@@ -354,15 +366,15 @@ namespace TicTacToe
             setPlayerName("Franky");
         }
 
-        public boolean makeStrategyMove()
+        public bool makeStrategyMove()
         {
             /*
              *  evaluate the board by running the strategy tree on each of the board's indexes
              *  the index with max value is the chosen one
              */
             long[] gradesBoard = new long[strategy.getRoot().getBoard().getBoardSize()];
-            long max = Integer.MIN_VALUE;
-            for (int i = 0; i < gradesBoard.length; i++)
+            long max = int.MinValue;
+            for (int i = 0; i < gradesBoard.Length; i++)
             {
                 if (strategy.getRoot().getBoard().getIndexValue(i) != 0)
                 {
@@ -372,7 +384,7 @@ namespace TicTacToe
                 else
                 {
                     // grade free spaces by running the evaluation tree on the location
-                    gradesBoard[i] = Math.abs(strategy.getRoot().evalIndexGrade(strategy.getRoot(), i));
+                    gradesBoard[i] = Math.Abs(strategy.getRoot().evalIndexGrade(strategy.getRoot(), i));
                     //				gradesBoard[i] = strategy.getRoot().evalIndexGrade(strategy.getRoot(),i);
                     if (gradesBoard[i] >= max)
                         max = gradesBoard[i];
@@ -398,26 +410,26 @@ namespace TicTacToe
              */
 
             // create an array of indexes
-            List<Integer> maxIndexesArray = new ArrayList<Integer>();
+            List<int> maxIndexesAfinalrray = new List<int>();
             // iterate all indexes and add the indexes of the max ones
-            for (int i = 0; i < gradesBoard.length; i++)
+            for (int i = 0; i < gradesBoard.Length; i++)
             {
                 // skip occupied spaces
                 if (strategy.getRoot().getBoard().getIndexValue(i) != 0) ;
                 else if (gradesBoard[i] == max) // found max, add to the array
-                    maxIndexesArray.add(i);
+                    maxIndexesArray.Add(i);
             }
 
             // depending of the individual settings, select first max or a random one
             try
             {
                 if (selectRandomMaxIndex)
-                    return maxIndexesArray.get((int)(Math.random() * maxIndexesArray.size()));
-                return maxIndexesArray.get(0);
+                    return maxIndexesArray[  ((int)rnd.NextDouble() * maxIndexesArray.Count())];
+                return maxIndexesArray[0];
             }
-            catch (IndexOutOfBoundsException e)
+            catch (System.IndexOutOfRangeException e)
             {
-                System.out.println(e.getMessage());
+                Console.WriteLine(e.getMessage());
                 return getRandomFreeIndex();
             }
         }
@@ -428,16 +440,16 @@ namespace TicTacToe
             /*
              *  prints the evaluation grades board
              */
-            for (int i = 0; i < board.length; i++)
+            for (int i = 0; i < board.Length; i++)
             {
                 if (i % getBoard().getBoardSizeRow() == 0)
                 {
-                    System.out.println();
-                    System.out.print(i + " | ");
+                    Console.WriteLine();
+                    Console.WriteLine(i + " | ");
                 }
-                System.out.print(" " + board[i] + " ");
+                Console.WriteLine(" " + board[i] + " ");
             }
-            System.out.println();
+            Console.WriteLine();
         }
         public int getRandomFreeIndex()
         {
@@ -446,11 +458,11 @@ namespace TicTacToe
              * keep on generating and attempting until success to place at the generated index
              */
             int index;
-            boolean flag = false;
+            bool flag = false;
             Random rand = new Random();
             do
             {
-                index = rand.nextInt(board.getBoardSize());
+                index = rnd.Next(board.getBoardSize());
                 if (board.indexEmpty(index))
                 {
                     //board.setIndex(index, this);
@@ -465,17 +477,16 @@ namespace TicTacToe
             this.strategy.setTreeBoard(board);
         }
 
-        @Override
         public int compareTo(Object obj)
         {
             Individual other = (Individual)obj;
             // sort from lower to higher
             //		return new Double(getFitness()).compareTo(new Double(other.getFitness()));
             // sort from higher to lower
-            return new Double(other.getFitness()).compareTo(new Double(getFitness()));
+            return new double(other.getFitness()).compareTo(new double(getFitness()));
         }
 
-        public boolean isIdeal(int popSize)
+        public bool isIdeal(int popSize)
         {
             return losses[STARTED_GAME] +
                     losses[NOT_STARTED_GAME] +
