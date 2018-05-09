@@ -296,8 +296,8 @@ namespace TicTacToe
             this.getStrategyRoot().swapNodes(swap1, swap2.copy(swap2));
 
             // combine the parents name to create a new name
-            this.setPlayerName(this.getPlayerName().substring(0, this.getPlayerName().length() / 2) +
-                    otherIndividual.getPlayerName().substring(otherIndividual.getPlayerName().length() / 2 - 1, otherIndividual.getPlayerName().length() - 1));
+            this.setPlayerName(this.getPlayerName().substring(0, this.getPlayerName().Length / 2) +
+                    otherIndividual.getPlayerName().substring(otherIndividual.getPlayerName().Length / 2 - 1, otherIndividual.getPlayerName().Length - 1));
             return this;
         }
 
@@ -373,7 +373,7 @@ namespace TicTacToe
              *  the index with max value is the chosen one
              */
             long[] gradesBoard = new long[strategy.getRoot().getBoard().getBoardSize()];
-            long max = int.MIN_VALUE;
+            long max = int.MinValue;
             for (int i = 0; i < gradesBoard.Length; i++)
             {
                 if (strategy.getRoot().getBoard().getIndexValue(i) != 0)
@@ -410,7 +410,7 @@ namespace TicTacToe
              */
 
             // create an array of indexes
-            List<Int32> maxIndexesArray = new ArrayList<Int32>();
+            List<int> maxIndexesArray = new List<int>();
             // iterate all indexes and add the indexes of the max ones
             for (int i = 0; i < gradesBoard.Length; i++)
             {
@@ -424,10 +424,10 @@ namespace TicTacToe
             try
             {
                 if (selectRandomMaxIndex)
-                    return maxIndexesArray.get((int)(rnd.NextDouble() * maxIndexesArray.size()));
-                return maxIndexesArray.get(0);
+                    return maxIndexesArray[  ((int)rnd.NextDouble() * maxIndexesArray.Count())];
+                return maxIndexesArray[0];
             }
-            catch (IndexOutOfBoundsException e)
+            catch (System.IndexOutOfRangeException e)
             {
                 Console.WriteLine(e.getMessage());
                 return getRandomFreeIndex();
@@ -440,7 +440,7 @@ namespace TicTacToe
             /*
              *  prints the evaluation grades board
              */
-            for (int i = 0; i < board.length; i++)
+            for (int i = 0; i < board.Length; i++)
             {
                 if (i % getBoard().getBoardSizeRow() == 0)
                 {
@@ -483,7 +483,7 @@ namespace TicTacToe
             // sort from lower to higher
             //		return new Double(getFitness()).compareTo(new Double(other.getFitness()));
             // sort from higher to lower
-            return new Double(other.getFitness()).compareTo(new Double(getFitness()));
+            return new double(other.getFitness()).compareTo(new double(getFitness()));
         }
 
         public bool isIdeal(int popSize)
