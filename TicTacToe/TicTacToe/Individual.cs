@@ -13,9 +13,9 @@ namespace TicTacToe
         private GPTree strategy;
         private Board board;
         private bool selectRandomMaxIndex; // decides whether to choose first encountered max index, or a random in case of multiple maximums
-                                              // the arrays of game results (draws, losses, wins) represent a game result
-                                              // index 0 represent the result when the player started the game
-                                              // index 1 represent the result when the player has not started the game
+                                           // the arrays of game results (draws, losses, wins) represent a game result
+                                           // index 0 represent the result when the player started the game
+                                           // index 1 represent the result when the player has not started the game
         private string[] functionList = null;
         private string[] terminalList = null;
 
