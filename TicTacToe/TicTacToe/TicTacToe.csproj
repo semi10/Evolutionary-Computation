@@ -47,7 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Evolution.cs" />
-    <Compile Include="Individual.cs" />
+    <Compile Include="SettingsGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsGui.Designer.cs">
+      <DependentUpon>SettingsGui.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -59,6 +64,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SettingsGui.resx">
+      <DependentUpon>SettingsGui.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
