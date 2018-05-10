@@ -9,6 +9,7 @@ namespace TicTacToe
     public class Individual
     {
         private string playerName;
+        private int value;
         private double fitness;
         private GPTree strategy;
         private Board board;
@@ -71,6 +72,16 @@ namespace TicTacToe
         public String getPlayerName()
         {
             return playerName;
+        }
+
+        public void setValue(int value)
+        {
+            this.value = value;
+        }
+
+        public int getValue()
+        {
+            return value;
         }
 
         public void setFunctionList(String[] functionList)

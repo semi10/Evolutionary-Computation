@@ -37,7 +37,7 @@ namespace TicTacToe
             return board[index] == 0;
         }
 
-        public bool attemptMove(int index, Player player)
+        public bool attemptMove(int index, Individual player)
         {
             if (this.indexEmpty(index))
             {
@@ -45,6 +45,13 @@ namespace TicTacToe
                 return true;
             }
             return false;
+        }
+        public void setIndex(int index, Individual player)
+        {
+            /*
+             * sets the location on the board with a player piece (1 for 'X', 2 for 'O')
+             */
+            board[index] = player.getValue();
         }
         public void setIndex(int index, int value)
         {
@@ -372,7 +379,7 @@ namespace TicTacToe
             return count;
         }
 
-        public int checkWin(Player player)
+        public int checkWin(Individual player)
         {
             /*
              * Checks whether a board has a winning state in it
