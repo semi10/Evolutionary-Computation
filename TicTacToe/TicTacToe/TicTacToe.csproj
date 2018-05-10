@@ -49,6 +49,12 @@
     <Compile Include="Board.cs" />
     <Compile Include="Evolution.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameGui.Designer.cs">
+      <DependentUpon>GameGui.cs</DependentUpon>
+    </Compile>
     <Compile Include="Individual.cs" />
     <Compile Include="SettingsGui.cs">
       <SubType>Form</SubType>
