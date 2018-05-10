@@ -51,6 +51,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.funcSet = new System.Windows.Forms.CheckedListBox();
             this.terminalSet = new System.Windows.Forms.CheckedListBox();
+            this.progressEvo = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // individualDepth
@@ -176,7 +177,8 @@
             // 
             this.bestEvalSelectMethod.FormattingEnabled = true;
             this.bestEvalSelectMethod.Items.AddRange(new object[] {
-            "Random Maximum"});
+            "Random Maximum",
+            "First Maximum"});
             this.bestEvalSelectMethod.Location = new System.Drawing.Point(12, 208);
             this.bestEvalSelectMethod.Name = "bestEvalSelectMethod";
             this.bestEvalSelectMethod.Size = new System.Drawing.Size(136, 21);
@@ -295,7 +297,7 @@
             // 
             // runEvo
             // 
-            this.runEvo.Location = new System.Drawing.Point(300, 328);
+            this.runEvo.Location = new System.Drawing.Point(15, 328);
             this.runEvo.Name = "runEvo";
             this.runEvo.Size = new System.Drawing.Size(114, 37);
             this.runEvo.TabIndex = 18;
@@ -363,11 +365,19 @@
             this.terminalSet.TabIndex = 22;
             this.terminalSet.Tag = "terminalSet";
             // 
+            // progressEvo
+            // 
+            this.progressEvo.Location = new System.Drawing.Point(168, 318);
+            this.progressEvo.Name = "progressEvo";
+            this.progressEvo.Size = new System.Drawing.Size(197, 32);
+            this.progressEvo.TabIndex = 23;
+            // 
             // SettingsGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 377);
+            this.Controls.Add(this.progressEvo);
             this.Controls.Add(this.terminalSet);
             this.Controls.Add(this.funcSet);
             this.Controls.Add(this.label11);
@@ -423,5 +433,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckedListBox funcSet;
         private System.Windows.Forms.CheckedListBox terminalSet;
+        private System.Windows.Forms.ProgressBar progressEvo;
     }
 }
