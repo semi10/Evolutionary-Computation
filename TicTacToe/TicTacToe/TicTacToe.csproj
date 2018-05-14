@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Individual.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Selection.cs" />
     <Compile Include="SettingsGui.cs">
       <SubType>Form</SubType>
     </Compile>
