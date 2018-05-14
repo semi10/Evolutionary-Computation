@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace TicTacToe
 {
@@ -263,19 +264,19 @@ namespace TicTacToe
 
             randNum = rnd.Next(children[0].getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original first parent
-            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.red);
+            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the first random node reference
             swap1 = children[0].getStrategyRoot().getNode(children[0].getStrategyRoot(), randNum);
             // randomize a number ranging from 2....nodesAmount of second parent
             randNum = rnd.Next(children[1].getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original second parent
-            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.red);
+            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the second random node reference
             swap2 = children[1].getStrategyRoot().getNode(children[1].getStrategyRoot(), randNum);
 
             // paint the swapped nodes
-            swap1.paintNode(Color.green);
-            swap2.paintNode(Color.green);
+            swap1.paintNode(Color.Green);
+            swap2.paintNode(Color.Green);
 
             // make the reference swaps
             //		System.out.println("Swapping " + swap1.TreeStr() + " with " + swap2.TreeStr() + " node #" + temp);
@@ -303,19 +304,19 @@ namespace TicTacToe
             // randomize a number ranging from 2....nodesAmount of first parent
             randNum = rnd.Next(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original first parent
-            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.red);
+            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the first random node reference
             swap1 = this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum);
             // randomize a number ranging from 2....nodesAmount of second parent
             randNum = rnd.Next(otherIndividual.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original second parent
-            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.red);
+            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the second random node reference
             swap2 = otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum);
 
             // paint the swapped nodes
-            swap1.paintNode(Color.green);
-            swap2.paintNode(Color.green);
+            swap1.paintNode(Color.Green);
+            swap2.paintNode(Color.Green);
 
             // make the reference swaps
             //		System.out.println("Swapping " + swap1.TreeStr() + " with " + swap2.TreeStr() + " node #" + temp);
@@ -497,7 +498,7 @@ namespace TicTacToe
             // sort from lower to higher
             //		return new Double(getFitness()).compareTo(new Double(other.getFitness()));
             // sort from higher to lower
-            return (other.getFitness().compareTo(this.getFitness()));
+            return (other.getFitness().CompareTo(this.getFitness()));
         }
 
         public bool isIdeal(int popSize)
