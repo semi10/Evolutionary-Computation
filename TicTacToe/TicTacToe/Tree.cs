@@ -11,7 +11,7 @@ using System.Threading.Tasks;
  // to be set, it is a circular value going from 0,1,2.....,[boardSize-1],0,1,2..... 
 namespace TicTacToe
 {
-    class Tree
+    public class Tree
     {
         private Node root;
         private Board board;
