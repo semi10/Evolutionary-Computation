@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace TicTacToe
 {
     public class Individual
     {
         private string playerName;
+        protected bool isHumanPlayer;
         private int value;
         private double fitness;
-        private GPTree strategy;
+        private Tree strategy;
         private Board board;
         private bool selectRandomMaxIndex; // decides whether to choose first encountered max index, or a random in case of multiple maximums
                                            // the arrays of game results (draws, losses, wins) represent a game result
@@ -55,7 +57,7 @@ namespace TicTacToe
         {
             this.playerName = individual.playerName;
             fitness = individual.fitness;
-            strategy = new GPTree(individual.getStrategy());
+            strategy = new Tree(individual.getStrategy());
             this.setBoard(individual.board);
             setFunctionList(individual.getFunctionList());
             setTerminalList(individual.getTerminalList());
@@ -83,17 +85,31 @@ namespace TicTacToe
         {
             return value;
         }
+        public void setIsHumanPlayer(bool isHumanPlayer)
+        {
+            this.isHumanPlayer = isHumanPlayer;
+        }
 
+        public bool getIsHumanPlayer()
+        {
+            return this.isHumanPlayer;
+        }
         public void setFunctionList(String[] functionList)
         {
             if (functionList != null)
-                this.functionList = functionList.clone();
+            {
+                this.functionList = new string[functionList.Length];
+                functionList.CopyTo(this.functionList, 0);
+            }
         }
 
         public void setTerminalList(String[] terminalList)
         {
             if (terminalList != null)
-                this.terminalList = terminalList.clone();
+            {
+                this.terminalList = new string[terminalList.Length];
+                terminalList.CopyTo(terminalList, 0);
+            }
         }
 
         public String[] getFunctionList()
@@ -165,23 +181,23 @@ namespace TicTacToe
             Console.WriteLine("Draws   " + draws[STARTED_GAME] + "             " + draws[NOT_STARTED_GAME]);
         }
 
-        public void setStrategy(GPTree strategy)
+        public void setStrategy(Tree strategy)
         {
             this.strategy = strategy;
         }
 
-        public GPTree getStrategy()
+        public Tree getStrategy()
         {
             /*
-             * returns the strategy tree (GPTree object)
+             * returns the strategy tree (Tree object)
              */
             return strategy;
         }
 
-        public GPNode getStrategyRoot()
+        public Node getStrategyRoot()
         {
             /*
-             * returns the strategy tree root node (GPNode object)
+             * returns the strategy tree root node (Node object)
              */
             return strategy.getRoot();
         }
@@ -240,27 +256,27 @@ namespace TicTacToe
             Individual[] children = new Individual[2];
             children[0] = new Individual(this);
             children[1] = new Individual(otherIndividual);
-            // GPNode objects to temporary hold the returned references
-            GPNode swap1 = null;
-            GPNode swap2 = null;
+            // Node objects to temporary hold the returned references
+            Node swap1 = null;
+            Node swap2 = null;
 
             // randomize a number ranging from 2....nodesAmount of first parent
 
             randNum = rnd.Next(children[0].getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original first parent
-            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.red);
+            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the first random node reference
             swap1 = children[0].getStrategyRoot().getNode(children[0].getStrategyRoot(), randNum);
             // randomize a number ranging from 2....nodesAmount of second parent
             randNum = rnd.Next(children[1].getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original second parent
-            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.red);
+            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the second random node reference
             swap2 = children[1].getStrategyRoot().getNode(children[1].getStrategyRoot(), randNum);
 
             // paint the swapped nodes
-            swap1.paintNode(Color.green);
-            swap2.paintNode(Color.green);
+            swap1.paintNode(Color.Green);
+            swap2.paintNode(Color.Green);
 
             // make the reference swaps
             //		System.out.println("Swapping " + swap1.TreeStr() + " with " + swap2.TreeStr() + " node #" + temp);
@@ -281,34 +297,34 @@ namespace TicTacToe
             Random rand = new Random();
             int randNum;
             const int MIN = 2;
-            // GPNode objects to temporary hold the returned references
-            GPNode swap1 = null;
-            GPNode swap2 = null;
+            // Node objects to temporary hold the returned references
+            Node swap1 = null;
+            Node swap2 = null;
 
             // randomize a number ranging from 2....nodesAmount of first parent
             randNum = rnd.Next(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original first parent
-            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.red);
+            this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the first random node reference
             swap1 = this.getStrategyRoot().getNode(this.getStrategyRoot(), randNum);
             // randomize a number ranging from 2....nodesAmount of second parent
             randNum = rnd.Next(otherIndividual.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             // paint the selected nodes at the original second parent
-            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.red);
+            otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum).paintNode(Color.Red);
             // get the second random node reference
             swap2 = otherIndividual.getStrategyRoot().getNode(otherIndividual.getStrategyRoot(), randNum);
 
             // paint the swapped nodes
-            swap1.paintNode(Color.green);
-            swap2.paintNode(Color.green);
+            swap1.paintNode(Color.Green);
+            swap2.paintNode(Color.Green);
 
             // make the reference swaps
             //		System.out.println("Swapping " + swap1.TreeStr() + " with " + swap2.TreeStr() + " node #" + temp);
             this.getStrategyRoot().swapNodes(swap1, swap2.copy(swap2));
 
             // combine the parents name to create a new name
-            this.setPlayerName(this.getPlayerName().substring(0, this.getPlayerName().Length / 2) +
-                    otherIndividual.getPlayerName().substring(otherIndividual.getPlayerName().Length / 2 - 1, otherIndividual.getPlayerName().Length - 1));
+            this.setPlayerName(this.getPlayerName().Substring(0, this.getPlayerName().Length / 2) +
+                    otherIndividual.getPlayerName().Substring(otherIndividual.getPlayerName().Length / 2 - 1, otherIndividual.getPlayerName().Length - 1));
             return this;
         }
 
@@ -322,8 +338,8 @@ namespace TicTacToe
             int randNum;
             Individual mutatedIndividual = new Individual(this);
             const int MIN = 2;
-            GPNode mutateNode = null;
-            GPNode mutateNodeSwap = null;
+            Node mutateNode = null;
+            Node mutateNodeSwap = null;
             randNum = rnd.Next(this.getStrategyRoot().countNodes() - MIN + 1) + MIN;
             mutateNode = mutatedIndividual.getStrategyRoot().getNode(mutatedIndividual.getStrategyRoot(), randNum - 1);
 
@@ -338,7 +354,7 @@ namespace TicTacToe
                 // generate a random tree (not full) of max depth of 3 and swap the nodes
 
                 // need to research other sizes of random generated mutation tree
-                mutateNodeSwap = GPNode.generateFullTree(3, board, this);
+                mutateNodeSwap = Node.generateFullTree(3, board, this);
                 mutatedIndividual.getStrategyRoot().swapNodes(mutateNode, mutateNodeSwap);
             }
             return mutatedIndividual;
@@ -359,23 +375,11 @@ namespace TicTacToe
              */
             if (strategy != null)
                 return false;
-            strategy = new GPTree(board, this);
+            strategy = new Tree(board, this);
             return strategy.growRandomTree(maxDepth);
         }
 
-        public void frankenstein()
-        {
-            strategy = new GPTree(board, this);
-            strategy.generateFranky();
-            setPlayerName("Original Franky");
-        }
 
-        public void frankenstein2()
-        {
-            strategy = new GPTree(board, this);
-            strategy.generateFranky2();
-            setPlayerName("Franky");
-        }
 
         public bool makeStrategyMove()
         {
@@ -428,19 +432,19 @@ namespace TicTacToe
                 // skip occupied spaces
                 if (strategy.getRoot().getBoard().getIndexValue(i) != 0) ;
                 else if (gradesBoard[i] == max) // found max, add to the array
-                    maxIndexesArray.Add(i);
+                    maxIndexesAfinalrray.Add(i);
             }
 
             // depending of the individual settings, select first max or a random one
             try
             {
                 if (selectRandomMaxIndex)
-                    return maxIndexesArray[  ((int)rnd.NextDouble() * maxIndexesArray.Count())];
-                return maxIndexesArray[0];
+                    return maxIndexesAfinalrray[  ((int)rnd.NextDouble() * maxIndexesAfinalrray.Count())];
+                return maxIndexesAfinalrray[0];
             }
             catch (System.IndexOutOfRangeException e)
             {
-                Console.WriteLine(e.getMessage());
+                Console.WriteLine(e.Message);
                 return getRandomFreeIndex();
             }
         }
@@ -494,7 +498,7 @@ namespace TicTacToe
             // sort from lower to higher
             //		return new Double(getFitness()).compareTo(new Double(other.getFitness()));
             // sort from higher to lower
-            return new double(other.getFitness()).compareTo(new double(getFitness()));
+            return (other.getFitness().CompareTo(this.getFitness()));
         }
 
         public bool isIdeal(int popSize)
