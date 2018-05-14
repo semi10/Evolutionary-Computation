@@ -5,19 +5,19 @@ namespace TicTacToe
     {
         private Individual[] individuals;
         private Board board;
-        private final Selection    selection;
+        private readonly Selection  selection;
         private int initialDepth;
         private int maxDepth;
 
         private String[] functionList = null;
         private String[] terminalList = null;
 
-        private final int SELECT_RANDOM_BEST = 0;
-        private final int SELECT_RANDOM = 1;
-        private final int SELECT_ELITE = 2;
+        private readonly int SELECT_RANDOM_BEST = 0;
+        private readonly int SELECT_RANDOM = 1;
+        private readonly int SELECT_ELITE = 2;
         private int KEEP_BEST = 0;
 
-        public Population(int size, Selection selection, int initialDepth, int maxDepth, boolean selectRandomMaxIndex, int KEEP_BEST, String[] functionList, String[] terminalList)
+        public Population(int size, Selection selection, int initialDepth, int maxDepth, bool selectRandomMaxIndex, int KEEP_BEST, String[] functionList, String[] terminalList)
         {
             individuals = new Individual[size];
             board = new Board();
@@ -42,12 +42,12 @@ namespace TicTacToe
 
         public Individual getWorst()
         {
-            return individuals[individuals.length - 1];
+            return individuals[individuals.Length - 1];
         }
 
         public int getPopSize()
         {
-            return individuals.length;
+            return individuals.Length;
         }
 
         public void nextGeneration()
@@ -56,12 +56,12 @@ namespace TicTacToe
              * generate the next generation
              */
             // initialize new population array
-            Individual[] newPop = new Individual[individuals.length];
+            Individual[] newPop = new Individual[individuals.Length];
             Random rand = new Random();
-            for (int index = 0; index < newPop.length; ++index)
+            for (int index = 0; index < newPop.Length; ++index)
             {
                 // generate random reproduction method
-                int reproduceMethod = rand.nextInt(2);
+                int reproduceMethod = rand.Next(2);
                 // 0: produces a new individual from best parents [index 0 and index 1] (crossover and mutation may occur)
                 // 1: produces a new individual from completely random parents (crossover and mutation may occur)
                 // 2: produces a new individual from a given top percentile of the population (returns copy)
@@ -77,20 +77,20 @@ namespace TicTacToe
                 newPop[index].trim(maxDepth);
             }
             individuals = newPop;
-            sort();
+            //sort();
         }
 
-        public void generateRandomPopulation(int maxDepth, boolean selectRandomMaxIndex)
+        public void generateRandomPopulation(int maxDepth, bool selectRandomMaxIndex)
         {
             /*
              * generate initial population of having strategy tree with a given maximal depth
              */
             // random name generator initialization
-            NameGenerator randName = new NameGenerator();
-            for (int i = 0; i < individuals.length; i++)
+           // NameGenerator randName = new NameGenerator();
+            for (int i = 0; i < individuals.Length; i++)
             {
                 // create a new individual
-                individuals[i] = new Individual(board, randName.generateName(), selectRandomMaxIndex, functionList, terminalList);
+                individuals[i] = new Individual(board, "Mosa", selectRandomMaxIndex, functionList, terminalList);
                 // create random strategy for the individual
                 individuals[i].generateRandomStrategy(maxDepth);
                 //          individuals[i].setFunctionList(functionList);
@@ -123,19 +123,19 @@ namespace TicTacToe
              * prints the population after sorting
              * prints individual name and fitness and the strategy representation string
              */
-            sort();
+           // sort();
             for (int i = 0; i < getPopSize(); i++)
             {
-                System.out.println(getIndividualAtIndex(i).getPlayerName() + " fitness " +
+                Console.WriteLine(getIndividualAtIndex(i).getPlayerName() + " fitness " +
                         getIndividualAtIndex(i).getFitness());
-                System.out.println(getIndividualAtIndex(i).getStrategyRoot().TreeStrFlat());
+                Console.WriteLine(getIndividualAtIndex(i).getStrategyRoot().TreeStrFlat());
             }
         }
 
-        public void sort()
-        {
-            Arrays.sort(individuals);
-        }
+        //public void sort()
+        //{
+        //    Arrays.sort(individuals);
+        //}
 
         public double getAvgPopulationFitness()
         {
@@ -143,26 +143,19 @@ namespace TicTacToe
              * return the population's average fitness
              */
             double sum = 0;
-            for (Individual ind: individuals)
+            foreach (Individual ind in individuals)
                 sum += ind.getFitness();
             return sum / getPopSize();
         }
 
-        public void showGraph(List<Double> scores, String graphName)
-        {
-            /*
-             * plot a graph of result (best fitness scores, average, etc...)
-             */
-            GraphPanel graph = new GraphPanel(scores);
-            graph.init(graphName);
-        }
+
 
         public void resetGameStats()
         {
             /*
              * iterate all individuals and resets all their game results (wins, losses, draws)
              */
-            for (int i = 0; i < individuals.length; i++)
+            for (int i = 0; i < individuals.Length; i++)
                 individuals[i].resetGameStats();
         }
 
@@ -183,14 +176,14 @@ namespace TicTacToe
 
         public void setFunctionList(String[] functionList)
         {
-            if (functionList != null)
-                this.functionList = functionList.clone();
+           // if (functionList != null)
+                //this.functionList = functionList.clone();
         }
 
         public void setTerminalList(String[] terminalList)
         {
-            if (terminalList != null)
-                this.terminalList = terminalList.clone();
+           // if (terminalList != null)
+                //this.terminalList = terminalList.clone();
         }
 
         public String[] getFunctionList()

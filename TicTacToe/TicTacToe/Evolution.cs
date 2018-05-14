@@ -117,7 +117,7 @@ namespace TicTacToe
                 // evaluate population fitness
                 population.evaluatePopulationFitness();
                 // sort the individuals by their fitness (higher fitness on lower index)
-                population.sort();
+                //population.sort();
                 // record the current generation data to .csv file
                 //writeGenerationData(gen);
                 Console.WriteLine("Generation " + gen + " of " + maxGenerations + ": " + getBest().getPlayerName() + " Fitness: " + getBest().getFitness());
@@ -132,8 +132,8 @@ namespace TicTacToe
 
 
                 // add average and best fitness results to an array for graph
-                avgFitness.add(population.getAvgPopulationFitness());
-                bestFitness.add(getBest().getFitness());
+                avgFitness.Add(population.getAvgPopulationFitness());
+                bestFitness.Add(getBest().getFitness());
 
                 if (playEveryNGame != 0)
                 {

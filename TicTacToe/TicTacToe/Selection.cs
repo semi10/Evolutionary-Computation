@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Selection
+    public class Selection
     {
         private readonly double mutationProb;
         private readonly double crossoverProb;
