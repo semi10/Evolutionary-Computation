@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Evolution.cs" />
+    <Compile Include="Function.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameGui.cs">
       <SubType>Form</SubType>
