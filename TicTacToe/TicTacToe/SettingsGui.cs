@@ -40,6 +40,15 @@ namespace TicTacToe
         public SettingsGui()
         {
             InitializeComponent();
+            individualDepth.SelectedIndex = 1;
+            maxInvidualDepth.SelectedIndex = 1;
+            bestEvalSelectMethod.SelectedIndex = 1;
+            populationSize.SelectedIndex = 1;
+            maxGen.SelectedIndex = 1;
+            amountOfBestInd.SelectedIndex = 1;
+            bestIndGen.SelectedIndex = 1;
+            crossProb.SelectedIndex = 1;
+            mutationProb.SelectedIndex = 1;
         }
 
         private void runEvo_Click(object sender, EventArgs e)
@@ -47,7 +56,7 @@ namespace TicTacToe
             initialDepth = Int32.Parse(individualDepth.SelectedItem.ToString());
             maxDepth = Int32.Parse(maxInvidualDepth.SelectedItem.ToString());
             // choose whether to select first maximal value index or a random (if there are multiples)
-            selectRandomMaxIndex = (Int32.Parse(bestEvalSelectMethod.SelectedItem.ToString()) == 0) ? true : false;
+            selectRandomMaxIndex = bestEvalSelectMethod.SelectedIndex == 0;
             popSize = (Int32.Parse(populationSize.SelectedItem.ToString()));
             if (popSize == 0)
                 popSize = 1;
@@ -60,8 +69,8 @@ namespace TicTacToe
             //playWithFranky = (Int32.Parse(inputFrankyTournament.SelectedItem.ToString()));
             /*if (!playTournament && !playWithFranky)
                 validInput = false;*/
-            crossoverProb = (Int32.Parse(crossProb.SelectedItem.ToString())) * 0.1;
-            mutationProbability = (Int32.Parse(mutationProb.SelectedItem.ToString())) * 0.1;
+            crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
+            mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
             //progressEvolution.setPercentage(0);
             //progressEvolution.setImageSize();
 
@@ -73,47 +82,47 @@ namespace TicTacToe
             List<string> functionList = new List<string>();
             List<string> terminalList = new List<string>();
 
-            foreach (int i in funcSet.CheckedItems)
+            foreach (var i in funcSet.CheckedItems)
             {
-                if (funcSet.CheckedItems[i].ToString() == "If>=")
+                if (i.ToString() == "If>=")
                     functionList.Add("If>=");
-                if (funcSet.CheckedItems[i].ToString() == "If<=")
+                if (i.ToString() == "If<=")
                     functionList.Add("If<=");
-                if (funcSet.CheckedItems[i].ToString() == "Plus")
+                if (i.ToString() == "Plus")
                     functionList.Add("Plus");
-                if (funcSet.CheckedItems[i].ToString() == "Minus")
+                if (i.ToString() == "Minus")
                     functionList.Add("Minus");
-                if (funcSet.CheckedItems[i].ToString() == "Multi")
+                if (i.ToString() == "Multi")
                     functionList.Add("Multi");
             }
 
-            foreach (int i in terminalSet.CheckedItems)
+            foreach (var i in terminalSet.CheckedItems)
             {
-                if (terminalSet.CheckedItems[i].ToString() == "CountNeighbors")
+                if (i.ToString() == "CountNeighbors")
                     terminalList.Add("CountNeighbors");
-                if (terminalSet.CheckedItems[i].ToString() == "CornerCount")
+                if (i.ToString() == "CornerCount")
                     terminalList.Add("CornerCount");
-                if (terminalSet.CheckedItems[i].ToString() == "WinOrBlock")
+                if (i.ToString() == "WinOrBlock")
                     terminalList.Add("WinOrBlock");
-                if (terminalSet.CheckedItems[i].ToString() == "CountRow")
+                if (i.ToString() == "CountRow")
                     terminalList.Add("CountRow");
-                if (terminalSet.CheckedItems[i].ToString() == "CountColumn")
+                if (i.ToString() == "CountColumn")
                     terminalList.Add("CountColumn");
-                if (terminalSet.CheckedItems[i].ToString() == "CountDiagMain")
+                if (i.ToString() == "CountDiagMain")
                     terminalList.Add("CountDiagMain");
-                if (terminalSet.CheckedItems[i].ToString() == "CountDiagSec")
+                if (i.ToString() == "CountDiagSec")
                     terminalList.Add("CountDiagSec");
-                if (terminalSet.CheckedItems[i].ToString() == "RowStreak")
+                if (i.ToString() == "RowStreak")
                     terminalList.Add("RowStreak");
-                if (terminalSet.CheckedItems[i].ToString() == "ColumnStreak")
+                if (i.ToString() == "ColumnStreak")
                     terminalList.Add("ColumnStreak");
-                if (terminalSet.CheckedItems[i].ToString() == "DiagMainStreak")
+                if (i.ToString() == "DiagMainStreak")
                     terminalList.Add("DiagMainStreak");
-                if (terminalSet.CheckedItems[i].ToString() == "DiagSecStreak")
+                if (i.ToString() == "DiagSecStreak")
                     terminalList.Add("DiagSecStreak");
-                if (terminalSet.CheckedItems[i].ToString() == "RandVal")
+                if (i.ToString() == "RandVal")
                     terminalList.Add("RandVal");
-                if (terminalSet.CheckedItems[i].ToString() == "IsRandIndex")
+                if (i.ToString() == "IsRandIndex")
                     terminalList.Add("IsRandIndex");
             }
 
@@ -123,6 +132,11 @@ namespace TicTacToe
                 validInput = false;
             }
 
+        }
+
+        private void playAgainst_Click(object sender, EventArgs e)
+        {
+            //Application.Run(new GameGui());
         }
     }
 }
