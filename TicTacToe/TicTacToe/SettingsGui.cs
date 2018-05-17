@@ -26,8 +26,8 @@ namespace TicTacToe
 
         private Individual bestIndividual = null;
 
-        private String[] functionList = new String[] { };
-        private String[] terminalList = new String[] { };
+        private string[] functionList = new string[] { };
+        private string[] terminalList = new string[] { };
         //private List<String> functionList = new ArrayList<String>();
         //private List<String> terminalList = new ArrayList<String>();
 
@@ -74,8 +74,65 @@ namespace TicTacToe
             //progressEvolution.setPercentage(0);
             //progressEvolution.setImageSize();
 
-            initializeFunctionTerminalSets();
+            initializeEvolutionValuesAndRun();
         }
+
+        public void initializeEvolutionValuesAndRun()
+        {
+            initialDepth = Int32.Parse(individualDepth.SelectedItem.ToString());
+            maxDepth = Int32.Parse(maxInvidualDepth.SelectedItem.ToString());
+            // choose whether to select first maximal value index or a random (if there are multiples)
+            selectRandomMaxIndex = bestEvalSelectMethod.SelectedIndex == 0;
+            popSize = (Int32.Parse(populationSize.SelectedItem.ToString()));
+            if (popSize == 0)
+                popSize = 1;
+            maxGenerations = (Int32.Parse(maxGen.SelectedItem.ToString()));
+            // amount of best individuals to keep from the old generation (pop[0],pop[1],...,pop[keepBestIndividualsInGeneration-1])
+            keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.SelectedItem.ToString()));
+            // determines how often there will be a game against human player (0 for None)
+            playEveryNGame = (Int32.Parse(bestIndGen.SelectedItem.ToString()));
+            //playTournament = (Int32.Parse(inputPlayEachOther.SelectedItem.ToString()));
+            //playWithFranky = (Int32.Parse(inputFrankyTournament.SelectedItem.ToString()));
+            /*if (!playTournament && !playWithFranky)
+                validInput = false;*/
+            crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
+            mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
+            //progressEvolution.setPercentage(0);
+            //progressEvolution.setImageSize();
+
+            initializeFunctionTerminalSets();
+
+            if (!validInput)
+            {
+                //JOptionPane.showMessageDialog(frame, "Missing Input!\nEither Tournament Mode is Unselected Or Missing Function/Terminal");
+                validInput = true;
+                return;
+            }
+            //Function.setFunctionList(functionList);
+            //Terminal.setTerminalList(terminalList);
+
+            // initialize the selection method and the new population
+            Selection selection = new Selection(mutationProbability, crossoverProb);
+            Population population = new Population(popSize, selection, initialDepth, maxDepth, selectRandomMaxIndex, keepBestIndividualsInGeneration, functionList, terminalList);
+            // initialize the evolution and start the evolution engine
+            Evolution evolution = new Evolution(population, maxGenerations, playEveryNGame, playTournament, selectRandomMaxIndex);
+            bestIndividual = evolution.evolve();
+            /*Thread runEvolutionThread = new Thread()
+            {
+
+            public void run()
+        {
+            btnRunEvolution.setEnabled(false);
+            bestIndividual = evolution.evolve();
+            if (comboBoxPlayerTwo.getItemCount() == 4)
+                comboBoxPlayerTwo.addItem("Best Individual From Last Evolution");
+            btnRunEvolution.setEnabled(true);
+        }
+    };
+    runEvolutionThread.start();
+        */
+        }
+
 
         public void initializeFunctionTerminalSets()
         {
@@ -126,6 +183,9 @@ namespace TicTacToe
                     terminalList.Add("IsRandIndex");
             }
 
+            this.functionList = functionList.ToArray();
+            this.terminalList = terminalList.ToArray();
+
             if (functionList.Count == 0 || terminalList.Count == 0)
             {
                 Console.WriteLine("Function Set And Terminal Set Must Contain At Least One Item!");
@@ -136,7 +196,23 @@ namespace TicTacToe
 
         private void playAgainst_Click(object sender, EventArgs e)
         {
-            //Application.Run(new GameGui());
+            initializeFunctionTerminalSets();
+            Board board = new Board();
+            Game game = new Game(board);
+            selectRandomMaxIndex = bestEvalSelectMethod.SelectedIndex == 0;
+            Individual PlayerOne = new Individual(board, "Player One", selectRandomMaxIndex, functionList, terminalList);
+            Individual PlayerTwo = new Individual(board, "Player Two", selectRandomMaxIndex, functionList, terminalList);
+            PlayerOne.setValue(1);
+            PlayerTwo.setValue(2);
+            //GameGUI gameGUI = new GameGUI(game, PlayerTwo);
+            GameGui gui = new GameGui(game, PlayerTwo);
+            this.Hide();
+            gui.ShowDialog();
+            this.Show();
+            PlayerOne.setIsHumanPlayer(true);
+            PlayerTwo.setIsHumanPlayer(true);
+            PlayerOne.setBoard(board);
+            PlayerTwo.setBoard(board);
         }
     }
 }

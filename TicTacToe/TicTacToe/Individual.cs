@@ -123,6 +123,7 @@ namespace TicTacToe
         }
         public String getRandomFunction()
         {
+            Console.WriteLine(functionList.Length);
             String function = functionList[(int)(rnd.NextDouble() * functionList.Length)];
             return function;
         }

@@ -9,15 +9,15 @@ namespace TicTacToe
         private int initialDepth;
         private int maxDepth;
 
-        private String[] functionList = null;
-        private String[] terminalList = null;
+        private string[] functionList = null;
+        private string[] terminalList = null;
 
         private readonly int SELECT_RANDOM_BEST = 0;
         private readonly int SELECT_RANDOM = 1;
         private readonly int SELECT_ELITE = 2;
         private int KEEP_BEST = 0;
 
-        public Population(int size, Selection selection, int initialDepth, int maxDepth, bool selectRandomMaxIndex, int KEEP_BEST, String[] functionList, String[] terminalList)
+        public Population(int size, Selection selection, int initialDepth, int maxDepth, bool selectRandomMaxIndex, int KEEP_BEST, string[] functionList, string[] terminalList)
         {
             individuals = new Individual[size];
             board = new Board();
@@ -174,24 +174,24 @@ namespace TicTacToe
             return maxDepth;
         }
 
-        public void setFunctionList(String[] functionList)
+        public void setFunctionList(string[] functionList)
         {
-           // if (functionList != null)
-                //this.functionList = functionList.clone();
+            if (functionList != null)
+                this.functionList = functionList;
         }
 
-        public void setTerminalList(String[] terminalList)
+        public void setTerminalList(string[] terminalList)
         {
-           // if (terminalList != null)
-                //this.terminalList = terminalList.clone();
+            if (terminalList != null)
+                this.terminalList = terminalList;
         }
 
-        public String[] getFunctionList()
+        public string[] getFunctionList()
         {
             return this.functionList;
         }
 
-        public String[] getTerminalList()
+        public string[] getTerminalList()
         {
             return this.terminalList;
         }
