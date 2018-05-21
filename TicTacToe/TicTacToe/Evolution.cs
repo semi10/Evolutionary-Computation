@@ -185,12 +185,31 @@ namespace TicTacToe
 
         public void playTournament()
         {
-
+            int popSize = population.getPopSize();
+            for (int i = 0; i < popSize; i++)
+            {
+                // if the population size is divisible by 10, there will be a progress indication every 10% (0% - 90%)
+                if (((float)(i * 100) / popSize) % 10 == 0)
+                {
+                    // print percentage of population which done competing
+                    Console.WriteLine(" " + (i * 100 / popSize) + "%");
+                }
+                for (int j = i + 1; j < popSize; j++)
+                {
+                    // play a match with individual at index [i] against individual at index [j]
+                    game.playTwoSetMatch(population.getIndividualAtIndex(i), population.getIndividualAtIndex(j));
+                }
+            }
         }
 
         public void playHumanVsBest(Individual best)
         {
-
+            Board board = new Board();
+            Game game = new Game(board);
+            best.setValue(2);
+            //TreeDraw td = new TreeDraw(best);
+            GameGui gui = new GameGui(game, best);
+            gui.ShowDialog();
         }
 
     }
