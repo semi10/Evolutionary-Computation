@@ -76,6 +76,38 @@ namespace TicTacToe
             return root;
         }
 
+        // TODO Semion delete overloaded dummy function 
+        public static Node generateFullTree(int maxDepth, Board board)
+        {
+            /*
+             * generate a full grown tree
+             */
+            Node root;
+            //If we are not at the max depth, choose a function  
+            if (maxDepth > 1)
+            {
+                // create new function
+                root = new Function(false, board, individual.getRandomFunction(), individual);
+                // create the proper amount of children (according to the function that was just created)
+                root.children = new Node[root.getNumChildren()];
+            }
+            //Otherwise, choose a terminal  
+            else
+            {
+                // create new terminal
+                root = new Terminal(board, individual.getRandomTerminal(), individual);
+            }
+            root.height = maxDepth;
+            //Recursively assign child nodes  
+            for (int i = 0; i < root.getNumChildren(); i++)
+            {
+                root.children[i] = Node.generateFullTree(maxDepth - 1, board, individual);
+            }
+            // return the created root
+            return root;
+        }
+
+
         public static Node generateTree(int maxDepth, Board board, Individual individual)
         {
             /*
