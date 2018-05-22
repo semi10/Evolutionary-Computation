@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawTree.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
