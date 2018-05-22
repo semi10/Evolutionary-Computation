@@ -12,7 +12,6 @@ namespace TicTacToe
     {
         Node[] children;
         protected int numChildren;
-        protected Board board;
         protected int height;
         protected Boolean isRoot;
         protected Color color;
@@ -20,11 +19,10 @@ namespace TicTacToe
         private Color defaultColor = Color.AliceBlue;
         static Random rnd = new Random();
         
-        public Node(bool _isRoot, Board _board)
+        public Node(bool _isRoot)
         {
             children = null;
             numChildren = 0;
-            board = _board;
             isRoot = _isRoot;
             color = defaultColor;
         }
@@ -46,7 +44,7 @@ namespace TicTacToe
             return root;
         }
 
-        public static Node generateFullTree(int maxDepth, Board board, Individual individual)
+        public static Node generateFullTree(int maxDepth)
         {
             /*
              * generate a full grown tree
@@ -56,7 +54,7 @@ namespace TicTacToe
             if (maxDepth > 1)
             {
                 // create new function
-                root = new Function(false, board, individual.getRandomFunction(), individual);
+                root = new Function(false);
                 // create the proper amount of children (according to the function that was just created)
                 root.children = new Node[root.getNumChildren()];
             }
@@ -64,51 +62,19 @@ namespace TicTacToe
             else
             {
                 // create new terminal
-                root = new Terminal(board, individual.getRandomTerminal(), individual);
+                root = new Terminal();
             }
             root.height = maxDepth;
             //Recursively assign child nodes  
             for (int i = 0; i < root.getNumChildren(); i++)
             {
-                root.children[i] = Node.generateFullTree(maxDepth - 1, board, individual);
+                root.children[i] = generateFullTree(maxDepth - 1);
             }
             // return the created root
             return root;
         }
 
-        // TODO Semion delete overloaded dummy function 
-        public static Node generateFullTree(int maxDepth, Board board)
-        {
-            /*
-             * generate a full grown tree
-             */
-            Node root;
-            //If we are not at the max depth, choose a function  
-            if (maxDepth > 1)
-            {
-                // create new function
-                root = new Function(false, board, individual.getRandomFunction(), individual);
-                // create the proper amount of children (according to the function that was just created)
-                root.children = new Node[root.getNumChildren()];
-            }
-            //Otherwise, choose a terminal  
-            else
-            {
-                // create new terminal
-                root = new Terminal(board, individual.getRandomTerminal(), individual);
-            }
-            root.height = maxDepth;
-            //Recursively assign child nodes  
-            for (int i = 0; i < root.getNumChildren(); i++)
-            {
-                root.children[i] = Node.generateFullTree(maxDepth - 1, board, individual);
-            }
-            // return the created root
-            return root;
-        }
-
-
-        public static Node generateTree(int maxDepth, Board board, Individual individual)
+        public static Node generateTree(int maxDepth)
         {
             /*
              * works very similarly to generateFullTree
@@ -122,25 +88,25 @@ namespace TicTacToe
                 Random rand = new Random();
                 if (rnd.NextDouble() >= 0.5)
                 {
-                    root = new Function(false, board, individual.getRandomFunction(), individual);
+                    root = new Function(false);
                     root.children = new Node[root.getNumChildren()];
                 }
                 else
-                    root = new Terminal(board, individual.getRandomTerminal(), individual);
+                    root = new Terminal();
             }
             //Otherwise, choose a terminal  
             else
-                root = new Terminal(board, individual.getRandomTerminal(), individual);
+                root = new Terminal();
             root.height = maxDepth;
             //Recursively assign child nodes  
             for (int i = 0; i < root.getNumChildren(); i++)
             {
-                root.children[i] = Node.generateTree(maxDepth - 1, board, individual);
+                root.children[i] = generateTree(maxDepth - 1);
             }
             return root;
         }
 
-        public void trim(int maxDepth, Individual individual)
+        public void trim(int maxDepth)
         {
             /*
              * traverse all nodes and check depths
@@ -155,33 +121,16 @@ namespace TicTacToe
                     // if the child is a function,
                     // swap with a terminal, else, do nothing
                     if (children[i] is Function)
-                        this.children[i] = new Terminal(board, individual.getRandomTerminal(), individual);
+                        this.children[i] = new Terminal();
                 }
                 else if (this.children[i] != null)
                 {
                     // if haven't reached the maximal depth, and the child is a function,
                     // recursively call each child with the trim method
-                    this.children[i].trim(maxDepth - 1, individual);
+                    this.children[i].trim(maxDepth - 1);
                 }
             }
         }
-
-        // Traverse the entire tree and set each node board
-        public void setTreeBoard(Board _board)
-        {
-            // set the board of the current node
-            setBoard(_board);
-            // if no children to the current node (it's a terminal) return
-            if (numChildren == 0) return;
-            // visit each node recursively
-            for (int i = 0; i < numChildren; i++)
-            {
-                if (children[i] != null)
-                    children[i].setTreeBoard(_board);
-            }
-            return;
-        }
-
 
         // Count the tree nodes can also be used to reset each node's color
         public int countNodes()
@@ -202,76 +151,17 @@ namespace TicTacToe
             return size;
         }
 
-
-        public long evalIndexGrade(Node root, int index)
-        {
-            /*
-             * evaluation function
-             * traverse the entire tree and returns the result of the evaluation
-             */
-            long grade = 0;
-            //		root.color = Color.red;
-            // if the current root is a terminal, return it's evaluation
-            if (root is Terminal){
-                grade = ((Terminal)root).Eval(index);
-                return grade;
-            }
-
-            // if the root is 'If <=' function, check if arg0 is <= than arg1, if so, return arg2, else, return arg3
-            if (((Function)root).getIdentity().Equals("If <=", StringComparison.OrdinalIgnoreCase))
-            {
-                if (evalIndexGrade(root.getChildAtIndex(0), index) <= evalIndexGrade(root.getChildAtIndex(1), index))
-                    grade = evalIndexGrade(root.getChildAtIndex(2), index);
-                else
-                    grade = evalIndexGrade(root.getChildAtIndex(3), index);
-            }
-            if (((Function)root).getIdentity().Equals("If >=", StringComparison.OrdinalIgnoreCase))         
-            {
-                if (evalIndexGrade(root.getChildAtIndex(0), index) >= evalIndexGrade(root.getChildAtIndex(1), index))
-                    grade = evalIndexGrade(root.getChildAtIndex(2), index);
-                else
-                    grade = evalIndexGrade(root.getChildAtIndex(3), index);
-            }
-            if (((Function)root).getIdentity().Equals("Minus", StringComparison.OrdinalIgnoreCase))
-            {
-                grade = evalIndexGrade(root.getChildAtIndex(0), index) -
-                        evalIndexGrade(root.getChildAtIndex(1), index);
-            }
-            if (((Function)root).getIdentity().Equals("Plus", StringComparison.OrdinalIgnoreCase))
-            {
-                grade = evalIndexGrade(root.getChildAtIndex(0), index) +
-                        evalIndexGrade(root.getChildAtIndex(1), index);
-            }
-            if (((Function)root).getIdentity().Equals("Multi", StringComparison.OrdinalIgnoreCase))
-            {
-                grade = evalIndexGrade(root.getChildAtIndex(0), index) *
-                        evalIndexGrade(root.getChildAtIndex(1), index);
-            }
-
-            return grade;
-        }
-
-        public Board getBoard()
-        {
-            return board;
-        }
-
-        public void setBoard(Board board)
-        {
-            this.board = board;
-        }
-
         public int getNumChildren()
         {
-            return this.numChildren;
+            return numChildren;
         }
 
         public String toString()
         {
-        if (this is Function)
-			return ((Function)this).toString();
-		else if (this is Terminal)
-			return ((Terminal)this).toString();
+            if (this is Function)
+                return ((Function)this).toString();
+            else if (this is Terminal)
+                return ((Terminal)this).toString();
             return null;
         }
 
@@ -283,7 +173,7 @@ namespace TicTacToe
         // Swap between arguments: original node and swap node traverse the tree until reaching the original node, then make the swap
         public void swapNodes(Node original, Node swap)
         {
-            for (int i = 0; i < this.numChildren; i++)
+            for (int i = 0; i < numChildren; i++)
             {
                 if (children[i] == null) return;
 

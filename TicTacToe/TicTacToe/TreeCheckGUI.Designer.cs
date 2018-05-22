@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe
 {
-    partial class TreeCheck
+    partial class TreeCheckGUI
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CreateTreebtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // CreateTreebtn
-            // 
-            this.CreateTreebtn.Location = new System.Drawing.Point(666, 21);
-            this.CreateTreebtn.Name = "CreateTreebtn";
-            this.CreateTreebtn.Size = new System.Drawing.Size(109, 28);
-            this.CreateTreebtn.TabIndex = 0;
-            this.CreateTreebtn.Text = "Create Tree";
-            this.CreateTreebtn.UseVisualStyleBackColor = true;
-            this.CreateTreebtn.Click += new System.EventHandler(this.CreateTreebtn_Click);
-            // 
-            // TreeCheck
+            // TreeCheckGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.CreateTreebtn);
-            this.Name = "TreeCheck";
+            this.Name = "TreeCheckGUI";
             this.Text = "TreeCheck";
+            this.Load += new System.EventHandler(this.TreeCheckGUI_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button CreateTreebtn;
     }
 }

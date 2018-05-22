@@ -46,38 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
-    <Compile Include="Evolution.cs" />
     <Compile Include="Function.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameGui.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameGui.Designer.cs">
-      <DependentUpon>GameGui.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Individual.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="Selection.cs" />
-    <Compile Include="SettingsGui.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingsGui.Designer.cs">
-      <DependentUpon>SettingsGui.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Terminal.cs" />
     <Compile Include="Tree.cs" />
-    <Compile Include="TreeCheck.cs">
+    <Compile Include="TreeCheckGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TreeCheck.Designer.cs">
-      <DependentUpon>TreeCheck.cs</DependentUpon>
+    <Compile Include="TreeCheckGUI.Designer.cs">
+      <DependentUpon>TreeCheckGUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GameGui.resx">
-      <DependentUpon>GameGui.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -87,11 +67,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SettingsGui.resx">
-      <DependentUpon>SettingsGui.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TreeCheck.resx">
-      <DependentUpon>TreeCheck.cs</DependentUpon>
+    <EmbeddedResource Include="TreeCheckGUI.resx">
+      <DependentUpon>TreeCheckGUI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -102,8 +79,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TournamentSelection.cs" />
-    <Compile Include="Population.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -14,36 +14,25 @@ namespace TicTacToe
     public class Tree
     {
         private Node root;
-        private Board board;
-        private Individual individual;
 
-        public Tree(Board _board, Individual _individual)
+        public Tree()
         {
-            board = _board;
             root = null;
-            individual = _individual;
         }
 
         public Tree(Tree _tree)
         {
-            board = _tree.board;
             root = _tree.getRoot().copy(_tree.getRoot());
             root.setIsRoot(true);
-            individual = _tree.individual;
         }
 
         // Generate a random tree
         public bool growRandomTree(int maxDepth)
         {
             if (root != null) return false;
-            root = Node.generateFullTree(maxDepth, board, individual);
+            root = Node.generateFullTree(maxDepth);
             root.setIsRoot(true);
             return true;
-        }
-
-        public Individual getIndividual()
-        {
-            return individual;
         }
 
         public Node getRoot()
@@ -56,15 +45,11 @@ namespace TicTacToe
             root = _root;
         }
 
-        public void setTreeBoard(Board _board)
-        {
-            root.setTreeBoard(_board);
-        }
 
         // Return a copy of a Tree must provide initial root node
         public Tree copyTree(Node _root)
         {
-            Tree copy = new Tree(board, individual);
+            Tree copy = new Tree();
             copy.root = root.copy(_root);
             copy.setRoot(copy.getRoot());
             return copy;

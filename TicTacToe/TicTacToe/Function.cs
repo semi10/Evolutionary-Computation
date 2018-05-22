@@ -8,9 +8,8 @@ namespace TicTacToe
 {
     class Function : Node
     {
-        private Individual individual;
         private String functionlIdentity = "UNINITIALIZED";
-        Random rnd = new Random();
+        private static Random rnd = new Random();
 
         private static String[] allowedFunctionList = {
 		    "If <=",
@@ -19,18 +18,14 @@ namespace TicTacToe
 		    "Plus",
 	        "Multi"};
 
-	public Function(bool _isRoot, Board _board, String _functionIdentity, Individual _individual) : base(_isRoot, _board)
+	public Function(bool _isRoot) : base(_isRoot)
         {
-            individual = _individual;
-            setFunction(_functionIdentity);
+            setRandFunction();
             numChildren = getFunctionChildrenAmount(functionlIdentity);
         }
 
-
-        // TODO Semion create same function for Terminal
-        public Function(Function _function) : base(_function.isRoot, _function.board)
+        public Function(Function _function) : base(_function.isRoot)
         {
-            individual = _function.individual;
             functionlIdentity = _function.functionlIdentity;
             numChildren = getFunctionChildrenAmount(functionlIdentity);
             height = _function.height;
@@ -64,21 +59,14 @@ namespace TicTacToe
 
         public void setRandFunction()
         {
-            //if(functionlIdentity.equalsIgnoreCase("UNINITIALIZED"))
-            //functionlIdentity = functionList[(int) (Math.random()*functionList.length)];
-            functionlIdentity = individual.getRandomFunction();
-            if (functionlIdentity == null)
-            {
-                functionlIdentity = allowedFunctionList[rnd.Next(0, allowedFunctionList.Length)];
-            }
+            functionlIdentity = allowedFunctionList[rnd.Next(0, allowedFunctionList.Length)];
         }
 
         public void setFunction(String _functionIdentity)
         {
             if (functionlIdentity.Equals("UNINITIALIZED", StringComparison.OrdinalIgnoreCase))
-            functionlIdentity = _functionIdentity;
+                functionlIdentity = _functionIdentity;
         }
-
 
         public int getFunctionChildrenAmount(String functionIdentity)
         {
@@ -95,8 +83,7 @@ namespace TicTacToe
             return 0;
         }
 
-
-        public String toString()
+        public new String toString()
         {
             return functionlIdentity;
         }
