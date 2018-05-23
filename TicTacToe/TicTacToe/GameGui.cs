@@ -12,11 +12,11 @@ namespace TicTacToe
 {
     public partial class GameGui : Form
     {
-        private Game game;
+        //private Game game;
         private readonly int WIDTH = 600;
         private readonly int HEIGHT = 600;
-        private Individual playerOne;
-        private Individual playerTwo;
+        //private Individual playerOne;
+        //private Individual playerTwo;
         private readonly int CONTINUE = 0;
         private readonly int ANOTHER_GAME = 1;
         private readonly int QUIT = 2;
@@ -30,16 +30,16 @@ namespace TicTacToe
         private int streak = 3;
         Button[] cell;
 
-        public GameGui(Game game, Individual opponent)
+        public GameGui(/*Game game, Individual opponent*/)
         {
             InitializeComponent();
-            this.game = game;
-            this.playerTwo = opponent;
-            playerOne = new Individual(game.getBoard(), "Player One", false, null, null);
-            playerOne.setValue(1);
-            playerOne.setIsHumanPlayer(true);
+            //this.game = game;
+            //this.playerTwo = opponent;
+            //playerOne = new Individual(game.getBoard(), "Player One", false, null, null);
+            //playerOne.setValue(1);
+            //playerOne.setIsHumanPlayer(true);
             //this.treeDraw = treeDraw;
-            this.playerTwo.setBoard(game.getBoard());
+            //this.playerTwo.setBoard(game.getBoard());
 
         }
 
@@ -65,7 +65,7 @@ namespace TicTacToe
         void cellClick(Object sender, EventArgs e)
         { 
             Button currentCell = (Button)sender;
-            if (!isEmpty(currentCell) || game.getBoard().getIndexValue(Convert.ToInt32(currentCell.Tag)) != 0)
+            if (!isEmpty(currentCell))
             {
                 MessageBox.Show("This cell is already occupied", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

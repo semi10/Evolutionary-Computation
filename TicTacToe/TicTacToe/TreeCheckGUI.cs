@@ -21,5 +21,11 @@ namespace TicTacToe
             DrawTree newTreeDrawing = new DrawTree(mainTree);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GameGui gui = new GameGui();
+            gui.Show();
+            this.Hide();
+        }
     }
 }

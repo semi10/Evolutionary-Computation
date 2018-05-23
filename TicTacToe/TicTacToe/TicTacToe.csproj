@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="DrawTree.cs" />
     <Compile Include="Function.cs" />
+    <Compile Include="GameGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameGui.Designer.cs">
+      <DependentUpon>GameGui.cs</DependentUpon>
+    </Compile>
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +65,9 @@
     <Compile Include="TreeCheckGUI.Designer.cs">
       <DependentUpon>TreeCheckGUI.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GameGui.resx">
+      <DependentUpon>GameGui.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
