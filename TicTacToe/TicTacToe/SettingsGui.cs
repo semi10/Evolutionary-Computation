@@ -28,14 +28,8 @@ namespace TicTacToe
 
         private string[] functionList = new string[] { };
         private string[] terminalList = new string[] { };
-        //private List<String> functionList = new ArrayList<String>();
-        //private List<String> terminalList = new ArrayList<String>();
 
         private bool validInput = true;
-
-        //private final String HTML_OPEN = "<html>";
-        //private final String HTML_CLOSE = "</html>";
-        //private final String HTML_NEWLINE = "<br>";
 
         public SettingsGui()
         {
@@ -66,8 +60,9 @@ namespace TicTacToe
             // determines how often there will be a game against human player (0 for None)
             playEveryNGame = (Int32.Parse(bestIndGen.SelectedItem.ToString()));
             //playTournament = (Int32.Parse(inputPlayEachOther.SelectedItem.ToString()));
+            playTournament = true;
             //playWithFranky = (Int32.Parse(inputFrankyTournament.SelectedItem.ToString()));
-            /*if (!playTournament && !playWithFranky)
+            /*if (!playTournament)
                 validInput = false;*/
             crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
             mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
@@ -204,7 +199,6 @@ namespace TicTacToe
             Individual PlayerTwo = new Individual(board, "Player Two", selectRandomMaxIndex, functionList, terminalList);
             PlayerOne.setValue(1);
             PlayerTwo.setValue(2);
-            //GameGUI gameGUI = new GameGUI(game, PlayerTwo);
             GameGui gui = new GameGui(game, PlayerTwo);
             this.Hide();
             gui.ShowDialog();

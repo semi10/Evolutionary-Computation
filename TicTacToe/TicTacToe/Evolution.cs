@@ -117,7 +117,7 @@ namespace TicTacToe
                 // evaluate population fitness
                 population.evaluatePopulationFitness();
                 // sort the individuals by their fitness (higher fitness on lower index)
-                //population.sort();
+                population.sort();
                 // record the current generation data to .csv file
                 //writeGenerationData(gen);
                 Console.WriteLine("Generation " + gen + " of " + maxGenerations + ": " + getBest().getPlayerName() + " Fitness: " + getBest().getFitness());
@@ -179,7 +179,7 @@ namespace TicTacToe
             //runDemo(getBest(),franky);
 
             // prints the entire population stats
-            //		population.printPopulation();
+            population.printPopulation();
             return getBest();
         }
 

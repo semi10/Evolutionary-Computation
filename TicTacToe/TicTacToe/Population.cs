@@ -77,7 +77,7 @@ namespace TicTacToe
                 newPop[index].trim(maxDepth);
             }
             individuals = newPop;
-            //sort();
+            sort();
         }
 
         public void generateRandomPopulation(int maxDepth, bool selectRandomMaxIndex)
@@ -123,7 +123,7 @@ namespace TicTacToe
              * prints the population after sorting
              * prints individual name and fitness and the strategy representation string
              */
-           // sort();
+            sort();
             for (int i = 0; i < getPopSize(); i++)
             {
                 Console.WriteLine(getIndividualAtIndex(i).getPlayerName() + " fitness " +
@@ -132,10 +132,10 @@ namespace TicTacToe
             }
         }
 
-        //public void sort()
-        //{
-        //    Arrays.sort(individuals);
-        //}
+        public void sort()
+        {
+            Array.Sort(individuals);
+        }
 
         public double getAvgPopulationFitness()
         {
@@ -147,8 +147,6 @@ namespace TicTacToe
                 sum += ind.getFitness();
             return sum / getPopSize();
         }
-
-
 
         public void resetGameStats()
         {

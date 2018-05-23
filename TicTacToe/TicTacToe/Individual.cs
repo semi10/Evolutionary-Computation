@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TicTacToe
 {
-    public class Individual
+    public class Individual : IComparable
     {
         private string playerName;
         protected bool isHumanPlayer;
@@ -510,5 +510,11 @@ namespace TicTacToe
                     draws[NOT_STARTED_GAME] == 0;
         }
 
+        public int CompareTo(object obj)
+        {
+            Individual other = (Individual)obj;
+            // sort from higher to lower
+            return other.getFitness().CompareTo(getFitness());
+        }
     }
 }
