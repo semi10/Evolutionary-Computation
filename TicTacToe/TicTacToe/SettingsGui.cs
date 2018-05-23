@@ -136,10 +136,10 @@ namespace TicTacToe
 
             foreach (var i in funcSet.CheckedItems)
             {
-                if (i.ToString() == "If>=")
-                    functionList.Add("If>=");
-                if (i.ToString() == "If<=")
-                    functionList.Add("If<=");
+                if (i.ToString() == "If >=")
+                    functionList.Add("If >=");
+                if (i.ToString() == "If <=")
+                    functionList.Add("If <=");
                 if (i.ToString() == "Plus")
                     functionList.Add("Plus");
                 if (i.ToString() == "Minus")

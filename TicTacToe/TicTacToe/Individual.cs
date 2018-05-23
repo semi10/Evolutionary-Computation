@@ -66,12 +66,12 @@ namespace TicTacToe
             draws = new int[2];
         }
 
-        public void setPlayerName(String playerName)
+        public void setPlayerName(string playerName)
         {
             this.playerName = playerName;
         }
 
-        public String getPlayerName()
+        public string getPlayerName()
         {
             return playerName;
         }
@@ -94,7 +94,7 @@ namespace TicTacToe
         {
             return this.isHumanPlayer;
         }
-        public void setFunctionList(String[] functionList)
+        public void setFunctionList(string[] functionList)
         {
             if (functionList != null)
             {
@@ -103,7 +103,7 @@ namespace TicTacToe
             }
         }
 
-        public void setTerminalList(String[] terminalList)
+        public void setTerminalList(string[] terminalList)
         {
             if (terminalList != null)
             {
@@ -112,25 +112,25 @@ namespace TicTacToe
             }
         }
 
-        public String[] getFunctionList()
+        public string[] getFunctionList()
         {
             return this.functionList;
         }
 
-        public String[] getTerminalList()
+        public string[] getTerminalList()
         {
             return this.terminalList;
         }
-        public String getRandomFunction()
+        public string getRandomFunction()
         {
             Console.WriteLine(functionList.Length);
-            String function = functionList[(int)(rnd.NextDouble() * functionList.Length)];
+            string function = functionList[(int)(rnd.NextDouble() * functionList.Length)];
             return function;
         }
 
-        public String getRandomTerminal()
+        public string getRandomTerminal()
         {
-            String terminal = terminalList[(int)(rnd.NextDouble() * terminalList.Length)];
+            string terminal = terminalList[(int)(rnd.NextDouble() * terminalList.Length)];
             return terminal;
         }
         public void addDraw(bool started)

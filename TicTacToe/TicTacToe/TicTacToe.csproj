@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
+    <Compile Include="DrawTree.cs" />
     <Compile Include="Evolution.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Game.cs" />

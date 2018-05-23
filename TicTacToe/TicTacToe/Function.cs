@@ -9,17 +9,17 @@ namespace TicTacToe
     class Function : Node
     {
         private Individual individual;
-        private String functionlIdentity = "UNINITIALIZED";
+        private string functionlIdentity = "UNINITIALIZED";
         Random rnd = new Random();
 
-        private static String[] allowedFunctionList = {
+        private static string[] allowedFunctionList = {
 		    "If <=",
 		    "If >=",
 		    "Minus",
 		    "Plus",
 	        "Multi"};
 
-	public Function(bool _isRoot, Board _board, String _functionIdentity, Individual _individual) : base(_isRoot, _board)
+	public Function(bool _isRoot, Board _board, string _functionIdentity, Individual _individual) : base(_isRoot, _board)
         {
             individual = _individual;
             setFunction(_functionIdentity);
@@ -36,10 +36,10 @@ namespace TicTacToe
             height = _function.height;
         }
 
-        public void setIdentity(String _functionIdentity)
+        public void setIdentity(string _functionIdentity)
         {
             bool exists = false;
-            foreach(String id in allowedFunctionList)
+            foreach(string id in allowedFunctionList)
             {
                 if (id.Equals(_functionIdentity, StringComparison.OrdinalIgnoreCase))
                     exists = true;
@@ -51,7 +51,7 @@ namespace TicTacToe
             numChildren = getFunctionChildrenAmount(_functionIdentity);
         }
 
-        public String getIdentity()
+        public string getIdentity()
         {
             return functionlIdentity;
         }
@@ -73,14 +73,14 @@ namespace TicTacToe
             }
         }
 
-        public void setFunction(String _functionIdentity)
+        public void setFunction(string _functionIdentity)
         {
             if (functionlIdentity.Equals("UNINITIALIZED", StringComparison.OrdinalIgnoreCase))
             functionlIdentity = _functionIdentity;
         }
 
 
-        public int getFunctionChildrenAmount(String functionIdentity)
+        public int getFunctionChildrenAmount(string functionIdentity)
         {
             if (functionIdentity == "If <=")
                 return 4;
@@ -96,9 +96,9 @@ namespace TicTacToe
         }
 
 
-        public String toString()
+        /*public string toString()
         {
             return functionlIdentity;
-        }
+        }*/
     }
 }

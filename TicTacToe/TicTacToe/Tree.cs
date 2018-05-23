@@ -76,7 +76,7 @@ namespace TicTacToe
         }
 
 
-        public String TreeStrPseudo()
+        public string TreeStrPseudo()
         {
             return root.TreeStrPseudo();
         }

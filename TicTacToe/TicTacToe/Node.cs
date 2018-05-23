@@ -234,7 +234,7 @@ namespace TicTacToe
             return this.numChildren;
         }
 
-        public String toString()
+        public string toString()
         {
         if (this is Function)
 			return ((Function)this).toString();
@@ -402,9 +402,9 @@ namespace TicTacToe
 
         // Returns a pseudo-code like representation of the tree
         // Reminder: the program which evolves is an evaluator for a location on the game board
-        public String TreeStrPseudo()
+        public string TreeStrPseudo()
         {
-            String line = "(";
+            string line = "(";
             if (this is Function){
                 if (this.numChildren == 4)
                 {
@@ -438,9 +438,9 @@ namespace TicTacToe
             return line + ")";
         }
 
-        public String TreeStrFlat()
+        public string TreeStrFlat()
         {
-            String line = "(";
+            string line = "(";
             if (this.getIsRoot()) line += "[";
 
             if (this is Function)

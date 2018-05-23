@@ -11,10 +11,10 @@ namespace TicTacToe
         private int MAX_RAND_VALUE = 11;    // max randomly generated value for RandVal terminal
         private int value = -1;             // generated value for RandMax terminal
         private int friendOrEnemy;          // generated randomly 1 (1 for FRIEND, 2 for ENEMY)
-        private String terminalIdentity = "UNINITIALIZED";
+        private string terminalIdentity = "UNINITIALIZED";
         private Individual individual;
         Random rnd = new Random();
-        private static String[] allowedTerminalList = {
+        private static string[] allowedTerminalList = {
 		    "CountNeightbors",
 		    "CountRow",
 		    "RowStreak",
@@ -31,7 +31,7 @@ namespace TicTacToe
         };
 
 
-        public Terminal(Board _board, String _terminalIdentity, Individual _individual) : base(false, _board)
+        public Terminal(Board _board, string _terminalIdentity, Individual _individual) : base(false, _board)
         {
 
             numChildren = 0;
@@ -116,10 +116,10 @@ namespace TicTacToe
             return grade;
         }
 
-        public void setIdentity(String _terminalIdentity)
+        public void setIdentity(string _terminalIdentity)
         {
             bool exists = false;
-            foreach(String id in allowedTerminalList)
+            foreach(string id in allowedTerminalList)
             {
                 if (id.Equals(terminalIdentity, StringComparison.OrdinalIgnoreCase))
                     exists = true;
@@ -185,7 +185,7 @@ namespace TicTacToe
          * else
          * return <terminalName> <friendOrEnemy>
          */
-        public String toString()
+        public string toString()
         {
             if ((terminalIdentity.Equals("RandVal", StringComparison.OrdinalIgnoreCase)) || (terminalIdentity.Equals("IsRandIndex", StringComparison.OrdinalIgnoreCase)))
                 return terminalIdentity + " " + value;
