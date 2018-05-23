@@ -38,6 +38,7 @@
             this.Name = "TreeCheckGUI";
             this.Text = "TreeCheck";
             this.Load += new System.EventHandler(this.TreeCheckGUI_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.TreeCheckGUI_Paint);
             this.ResumeLayout(false);
 
         }
