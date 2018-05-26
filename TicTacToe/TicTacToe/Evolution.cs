@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TicTacToe
@@ -202,15 +203,33 @@ namespace TicTacToe
             }
         }
 
+
+
         public void playHumanVsBest(Individual best)
         {
+
             Board board = new Board();
             Game game = new Game(board);
+            Individual playerOne = new Individual(game.getBoard(), "Player One", false, null, null);
+            playerOne.setValue(1);
+            playerOne.setIsHumanPlayer(true);
             best.setValue(2);
             //TreeDraw td = new TreeDraw(best);
             GameGui gui = new GameGui(game, best);
-            gui.ShowDialog();
+
+            gui.Show();
+
+            gui.Demo(playerOne, best);
+
+            //Thread t = new Thread(() => run(gui, playerOne, best));
+            //t.Start();
+
+            
         }
 
+        public void run(GameGui gui, Individual playerOne, Individual best)
+        {
+            gui.Demo(playerOne, best);
+        }
     }
 }

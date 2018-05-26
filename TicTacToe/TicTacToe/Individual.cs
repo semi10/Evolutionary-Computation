@@ -389,7 +389,7 @@ namespace TicTacToe
              *  the index with max value is the chosen one
              */
             long[] gradesBoard = new long[strategy.getRoot().getBoard().getBoardSize()];
-            long max = int.MinValue;
+            long max = 0;
             for (int i = 0; i < gradesBoard.Length; i++)
             {
                 if (strategy.getRoot().getBoard().getIndexValue(i) != 0)
@@ -443,7 +443,7 @@ namespace TicTacToe
                     return maxIndexesAfinalrray[  ((int)rnd.NextDouble() * maxIndexesAfinalrray.Count())];
                 return maxIndexesAfinalrray[0];
             }
-            catch (System.IndexOutOfRangeException e)
+            catch (System.ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
                 return getRandomFreeIndex();

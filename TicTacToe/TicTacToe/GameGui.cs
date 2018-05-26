@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,6 +36,17 @@ namespace TicTacToe
             InitializeComponent();
             this.game = game;
             this.playerTwo = opponent;
+            //playerOne = new Individual(game.getBoard(), "Player One", false, null, null);
+            //playerOne.setValue(1);
+            //playerOne.setIsHumanPlayer(true);
+            //this.treeDraw = treeDraw;
+            this.playerTwo.setBoard(game.getBoard());
+        }
+
+        public GameGui(Game game)
+        {
+            InitializeComponent();
+            this.game = game;
             playerOne = new Individual(game.getBoard(), "Player One", false, null, null);
             playerOne.setValue(1);
             playerOne.setIsHumanPlayer(true);
@@ -61,7 +73,24 @@ namespace TicTacToe
                 Controls.Add(cell[i]);
             }
         }
-        
+
+        public void markOpponentMove()
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                if (game.getBoard().getIndexValue(i) == 1)
+                {
+                    cell[i].Text="X";
+                    cell[i].BackColor=Color.Green;
+                }
+                else if (game.getBoard().getIndexValue(i) == 2)
+                {
+                    cell[i].Text="O";
+                    cell[i].BackColor=Color.Red;
+                }
+            }
+        }
+
         void cellClick(Object sender, EventArgs e)
         { 
             Button currentCell = (Button)sender;
@@ -98,6 +127,58 @@ namespace TicTacToe
                         return;
                     }
                     playerTurn = 1;
+                }
+            }
+        }
+
+        public void Demo(Individual ind1, Individual ind2)
+        {
+            resetGame();
+            MessageBox.Show("Match Between:\n" +
+                    ind1.getPlayerName() + " ('X') Vs. " + ind2.getPlayerName() + " ('O')" +
+                    "\nPress 'OK' to begin", ind1.getPlayerName() + " ('X') Vs. " + ind2.getPlayerName() + " ('O')", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // disable all buttons
+            int action = CONTINUE; // 0 - continue, 1 - another game, 2 - quit
+                                   // set individuals sides
+            ind1.setValue(1);
+            ind2.setValue(2);
+            while (true)
+            {
+                // make each player move until there is a winner
+                //ind1.makeStrategyMove();
+                markOpponentMove();
+
+                action = checkWin(1);
+                if (action == ANOTHER_GAME)
+                {
+                    // recursively call another game while switching player's sides
+                    Demo(ind2, ind1);
+                    break;
+                }
+                else if (action == QUIT)
+                {
+                    break;
+                }
+                ind2.makeStrategyMove();
+                markOpponentMove();
+                try
+                {
+                    Thread.Sleep(200);
+                }
+                catch (ThreadInterruptedException e)
+                {
+                    Console.WriteLine("newThread cannot go to sleep - interrupted by main thread.");
+                }
+                action = checkWin(2);
+                if (action == ANOTHER_GAME)
+                {
+                    // recursively call another game while switching player's sides
+                    Demo(ind2, ind1);
+                    break;
+                }
+                else if (action == QUIT)
+                {
+                    break;
                 }
             }
         }
