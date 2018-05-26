@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace TicTacToe
@@ -23,9 +24,14 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GameGui gui = new GameGui();
-            gui.Show();
-            this.Hide();
+            Thread th2 = new Thread(new ThreadStart(startTh2));
+            th2.Start();
+        }
+        GameGui gui = new GameGui();
+
+        private void startTh2()
+        {
+            Application.Run(gui);
         }
     }
 }

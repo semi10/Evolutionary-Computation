@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,7 +29,8 @@ namespace TicTacToe
         private int playerValue;
         private int SIZE = 4;
         private int streak = 3;
-        Button[] cell;
+        public Button[] cell;
+        Player2 player2;
 
         public GameGui(/*Game game, Individual opponent*/)
         {
@@ -60,6 +62,8 @@ namespace TicTacToe
                 cell[i].BackColor = Color.White;
                 Controls.Add(cell[i]);
             }
+
+            player2 = new Player2(this);
         }
         
         void cellClick(Object sender, EventArgs e)
@@ -72,33 +76,18 @@ namespace TicTacToe
             }
             else
             {
-                if (playerTurn == 1)
+                currentCell.Text = "O";
+                currentCell.Tag = "2";
+                currentCell.BackColor = Color.Red;
+                checkWin(playerTurn);
+                if (checkWin(playerTurn) == 2)
                 {
-                    currentCell.Text = "X";
-                    currentCell.Tag = "1";
-                    currentCell.BackColor = Color.Green;
-                    if (checkWin(playerTurn) == 1)
-                    {
-                        MessageBox.Show("Player one is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        resetGame();
-                        return;
-                    }
-                    playerTurn = 2;
+                    MessageBox.Show("Player two is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    resetGame();
+                    return;
                 }
-                else
-                {
-                    currentCell.Text = "O";
-                    currentCell.Tag = "2";
-                    currentCell.BackColor = Color.Red;
-                    checkWin(playerTurn);
-                    if (checkWin(playerTurn) == 2)
-                    {
-                        MessageBox.Show("Player two is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        resetGame();
-                        return;
-                    }
-                    playerTurn = 1;
-                }
+                playerTurn = 1;
+                playerTurn = player2.makeMove();
             }
         }
 
@@ -311,6 +300,35 @@ namespace TicTacToe
             // none of the above returns invoked --> game ended as a draw
             return -1;
         }
-
     }
+
+
+    public class Player2 
+    {
+        GameGui gui;
+        public Player2(GameGui _gui)
+        {
+            gui = _gui;
+        }
+
+        public int makeMove()
+        {
+            Random rnd = new Random();
+            bool successfulMove = false;
+            while (!successfulMove)
+            {
+                int i = rnd.Next(15);
+                if (gui.cell[i].Tag == "0")
+                {
+                    gui.cell[i].Text = "X";
+                    gui.cell[i].Tag = "1";
+                    gui.cell[i].BackColor = Color.Green;
+                    successfulMove = true;
+                }
+
+            }
+            return 2;
+        }
+    }
+
 }
