@@ -94,6 +94,7 @@ namespace TicTacToe
         {
             return this.isHumanPlayer;
         }
+
         public void setFunctionList(string[] functionList)
         {
             if (functionList != null)
@@ -123,7 +124,6 @@ namespace TicTacToe
         }
         public string getRandomFunction()
         {
-            Console.WriteLine(functionList.Length);
             string function = functionList[(int)(rnd.NextDouble() * functionList.Length)];
             return function;
         }

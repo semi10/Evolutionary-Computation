@@ -15,19 +15,19 @@ namespace TicTacToe
         private Individual individual;
         Random rnd = new Random();
         private static string[] allowedTerminalList = {
-		    "CountNeightbors",
-		    "CountRow",
-		    "RowStreak",
-		    "CountColumn",
-		    "ColumnStreak",
-		    "CountDiagMain",
-		    "DiagMainStreak",
-		    "CountDiagSec",
-		    "DiagSecStreak",
-		    "CornerCount",
-		    "RandVal",
-		    "IsRandIndex",
-	        "WinOrBlock"
+            "CountNeighbors",
+            "CountRow",
+            "RowStreak",
+            "CountColumn",
+            "ColumnStreak",
+            "CountDiagMain",
+            "DiagMainStreak",
+            "CountDiagSec",
+            "DiagSecStreak",
+            "CornerCount",
+            "RandVal",
+            "IsRandIndex",
+            "WinOrBlock"
         };
 
 
@@ -35,9 +35,9 @@ namespace TicTacToe
         {
 
             numChildren = 0;
-            _individual = individual;
-            _terminalIdentity = terminalIdentity;
-            setIdentity(terminalIdentity); ;
+            individual = _individual;
+            terminalIdentity = _terminalIdentity;
+            setIdentity(terminalIdentity); 
 
         }
 
@@ -121,7 +121,7 @@ namespace TicTacToe
             bool exists = false;
             foreach(string id in allowedTerminalList)
             {
-                if (id.Equals(terminalIdentity, StringComparison.OrdinalIgnoreCase))
+                if (id.Equals(_terminalIdentity, StringComparison.OrdinalIgnoreCase))
                     exists = true;
             }
 
