@@ -109,7 +109,7 @@ namespace TicTacToe
             if (terminalList != null)
             {
                 this.terminalList = new string[terminalList.Length];
-                terminalList.CopyTo(terminalList, 0);
+                terminalList.CopyTo(this.terminalList, 0);
             }
         }
 
