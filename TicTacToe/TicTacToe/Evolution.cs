@@ -179,7 +179,7 @@ namespace TicTacToe
             //runDemo(getBest(),franky);
 
             // prints the entire population stats
-            population.printPopulation();
+        //    population.printPopulation();
             return getBest();
         }
 

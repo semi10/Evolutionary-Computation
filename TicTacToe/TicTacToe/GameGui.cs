@@ -61,11 +61,28 @@ namespace TicTacToe
                 Controls.Add(cell[i]);
             }
         }
-        
+         public void markOpponentMove()
+        {
+            for(int i=0;i<16;i++)
+            {
+                if(game.getBoard().getIndexValue(i)==1)
+                {
+                    cell[i].Text = "X";
+                    cell[i].Tag = 1;
+                    cell[i].BackColor = Color.Green;
+                }
+                if (game.getBoard().getIndexValue(i) == 2)
+                {
+                    cell[i].Text = "O";
+                    cell[i].Tag = 2;
+                    cell[i].BackColor = Color.Red;
+                }
+            }
+        }
         void cellClick(Object sender, EventArgs e)
         { 
             Button currentCell = (Button)sender;
-            if (!isEmpty(currentCell) || game.getBoard().getIndexValue(Convert.ToInt32(currentCell.Tag)) != 0)
+            if (!isEmpty(currentCell) || game.getBoard().getIndexValue(Convert.ToInt32(currentCell.Name)) != 0)
             {
                 MessageBox.Show("This cell is already occupied", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -77,28 +94,31 @@ namespace TicTacToe
                     currentCell.Text = "X";
                     currentCell.Tag = "1";
                     currentCell.BackColor = Color.Green;
+                    game.getBoard().setIndex(Convert.ToInt32(currentCell.Name), playerOne);
                     if (checkWin(playerTurn) == 1)
                     {
                         MessageBox.Show("Player one is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         resetGame();
+                        game.getBoard().resetBoard();
                         return;
                     }
                     playerTurn = 2;
-                }
-                else
-                {
-                    currentCell.Text = "O";
-                    currentCell.Tag = "2";
-                    currentCell.BackColor = Color.Red;
-                    checkWin(playerTurn);
-                    if (checkWin(playerTurn) == 2)
+                    if(playerTwo.makeStrategyMove()&&playerTurn==2)
                     {
-                        MessageBox.Show("Player two is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        resetGame();
-                        return;
+                        markOpponentMove();
+                        
+                        checkWin(playerTurn);
+                        if (checkWin(playerTurn) == 2)
+                        {
+                            MessageBox.Show("Player two is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            resetGame();
+                            game.getBoard().resetBoard();
+                            return;
+                        }
+                        playerTurn = 1;
                     }
-                    playerTurn = 1;
                 }
+
             }
         }
 

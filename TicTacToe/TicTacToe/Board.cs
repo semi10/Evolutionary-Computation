@@ -9,7 +9,7 @@ namespace TicTacToe
     public class Board
     {
         private int[] board;
-        private const int SIZE = 10; // sets the row/column length
+        private const int SIZE = 4; // sets the row/column length
         private static int DIV_FACTOR = 2;
         private int streak = SIZE / DIV_FACTOR; // sets the streak length required to win
 
