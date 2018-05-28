@@ -15,10 +15,10 @@ namespace TicTacToe
         private Game game;
         private int playEveryNGame;
         private bool selectRandomMaxIndex;
-        private Individual frankyOriginal;
-        private Individual franky;
+      //  private Individual frankyOriginal;
+       // private Individual franky;
         private bool playTournamentBool;
-        private bool playWithFranky;
+       // private bool playWithFranky;
         //private CSV_Writer reportGenerator;
 
         //private ProgressImage progressBar;
@@ -148,6 +148,7 @@ namespace TicTacToe
                 if (getBest().isIdeal(population.getPopSize()))
                 {
                     Console.WriteLine("Found Best Individual!!!");
+                    playHumanVsBest(new Individual(getBest()));
                     break;
                 }
 
@@ -167,19 +168,6 @@ namespace TicTacToe
             else
                 Console.WriteLine("Solution: " + getBest());
 
-            // plot result graphs
-            //population.showGraph(avgFitness, "Average Fitness Graph");
-            //population.showGraph(bestFitness, "Best Fitness Graph");
-            /*if (playWithFranky)
-            {
-                population.showGraph(frankyOriginalFitness, "Original Franky Fitness Graph");
-                population.showGraph(frankyFitness, "Franky Fitness Graph");
-            }*/
-
-            //runDemo(getBest(),franky);
-
-            // prints the entire population stats
-        //    population.printPopulation();
             return getBest();
         }
 

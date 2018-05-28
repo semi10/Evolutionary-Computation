@@ -324,8 +324,7 @@ namespace TicTacToe
             this.getStrategyRoot().swapNodes(swap1, swap2.copy(swap2));
 
             // combine the parents name to create a new name
-            this.setPlayerName(this.getPlayerName().Substring(0, this.getPlayerName().Length / 2) +
-                    otherIndividual.getPlayerName().Substring(otherIndividual.getPlayerName().Length / 2 - 1, otherIndividual.getPlayerName().Length - 1));
+            this.setPlayerName(otherIndividual.getPlayerName());
             return this;
         }
 
@@ -431,8 +430,7 @@ namespace TicTacToe
             for (int i = 0; i < gradesBoard.Length; i++)
             {
                 // skip occupied spaces
-                if (strategy.getRoot().getBoard().getIndexValue(i) != 0) ;
-                else if (gradesBoard[i] == max) // found max, add to the array
+                if (strategy.getRoot().getBoard().getIndexValue(i) == 0 && gradesBoard[i] == max) // found max, add to the array
                     maxIndexesAfinalrray.Add(i);
             }
 

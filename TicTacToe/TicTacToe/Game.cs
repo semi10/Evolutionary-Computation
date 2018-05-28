@@ -91,8 +91,7 @@ namespace TicTacToe
                 //////////////////////////////////////
                 // can make either a random move or a move using the strategy tree
                 //startingPlayer.makeRandomMove();
-                if (startingPlayer.makeStrategyMove()) ;
-                else
+                if (!startingPlayer.makeStrategyMove())
                 {
                     // an attempt to make a move on an occupied space was made
                     // abort the game
@@ -110,8 +109,7 @@ namespace TicTacToe
                 // second player code block
                 //////////////////////////////////////
                 //secondPlayer.makeRandomMove();
-                if (secondPlayer.makeStrategyMove()) ;
-                else
+                if (!secondPlayer.makeStrategyMove())
                 {
                     Console.WriteLine("Move " + secondPlayer.getValue() + " Failed");
                     Console.WriteLine("SHUTTING GAME DOWN: OBSOLETE GARBAGE");

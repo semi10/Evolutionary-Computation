@@ -13,19 +13,19 @@ namespace TicTacToe
     public partial class GameGui : Form
     {
         private Game game;
-        private readonly int WIDTH = 600;
-        private readonly int HEIGHT = 600;
+      //  private readonly int WIDTH = 600;
+       // private readonly int HEIGHT = 600;
         private Individual playerOne;
         private Individual playerTwo;
-        private readonly int CONTINUE = 0;
-        private readonly int ANOTHER_GAME = 1;
-        private readonly int QUIT = 2;
-        private readonly int DRAW = -1;
+       // private readonly int CONTINUE = 0;
+       // private readonly int ANOTHER_GAME = 1;
+       // private readonly int QUIT = 2;
+       // private readonly int DRAW = -1;
         private readonly int HORIZONTAL_MARGIN = 66;
         private readonly int VERTICAL_MARGIN = 74;
         private readonly int BOARD_SIZE = 16;
         private int playerTurn = 1;
-        private int playerValue;
+       // private int playerValue;
         private int SIZE = 4;
         private int streak = 3;
         Button[] cell;
@@ -113,6 +113,7 @@ namespace TicTacToe
                             MessageBox.Show("Player two is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             resetGame();
                             game.getBoard().resetBoard();
+                            playerTurn = 1;
                             return;
                         }
                         playerTurn = 1;
