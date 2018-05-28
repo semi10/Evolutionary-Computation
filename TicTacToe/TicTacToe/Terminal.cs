@@ -86,7 +86,8 @@ namespace TicTacToe
             // call the proper method (stored as a string in terminalIdentity variable)
             // all methods but the countCorners receives 2 arguments:
             // index argument and playerNum argument which represent looking for a friend or an enemy
-
+            if (terminalIdentity.Equals("WinOrBlock", StringComparison.OrdinalIgnoreCase))
+                grade = (board.willWinBlock(index, playerNum)) ? Int32.MaxValue : 0;
             if (terminalIdentity.Equals("CountNeightbors", StringComparison.OrdinalIgnoreCase))
                 grade = board.countNeighbors(index, playerNum);
             if (terminalIdentity.Equals("CountRow", StringComparison.OrdinalIgnoreCase))
@@ -111,8 +112,7 @@ namespace TicTacToe
                 grade = value;
             if (terminalIdentity.Equals("IsRandIndex", StringComparison.OrdinalIgnoreCase))
                 grade = (value == index) ? 1 : 0;
-            if (terminalIdentity.Equals("WinOrBlock", StringComparison.OrdinalIgnoreCase))
-                grade = (board.willWinBlock(index, playerNum)) ? Int32.MaxValue : 0;
+
             return grade;
         }
 

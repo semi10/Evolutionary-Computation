@@ -399,7 +399,7 @@ namespace TicTacToe
                 else
                 {
                     // grade free spaces by running the evaluation tree on the location
-                    gradesBoard[i] = Math.Abs(strategy.getRoot().evalIndexGrade(strategy.getRoot(), i));
+                    gradesBoard[i] = Math.Abs(strategy.getRoot().evalIndexGrade(strategy.getRoot(), i))/2;
                     //				gradesBoard[i] = strategy.getRoot().evalIndexGrade(strategy.getRoot(),i);
                     if (gradesBoard[i] >= max)
                         max = gradesBoard[i];
