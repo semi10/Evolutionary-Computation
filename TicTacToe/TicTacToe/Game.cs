@@ -33,45 +33,18 @@ namespace TicTacToe
             /*
              *  play a two game match, each time another player get to start
              */
-            int result;
+            int result=0;
             // set both players the same board instance
             player1.setBoard(board);
             player2.setBoard(board);
 
             //		System.out.println("Game Between: " + player1.getPlayerName() + " And " + player2.getPlayerName());;
             // make two iteration, each time let another player start (change the order of parameters in playGame method)
-            for (int i = 0; i < 2; i++)
-            {
-                // reset the game board
-                board.resetBoard();
-                //			System.out.println("Game #" + (i+1));
-                if (i % 2 == 0)
-                    result = playGame(player1, player2);
-                else
-                    result = playGame(player2, player1);
-                //////////// ONLY PRINTS THE GAME RESULT
-                //			switch(result){
-                //			case DRAW:
-                //				System.out.println("Draw");
-                //				break;
-                //			case START_WIN:
-                //				if(i==0)
-                //					System.out.println(player1.getPlayerName() + " Wins");
-                //				else
-                //					System.out.println(player2.getPlayerName() + " Wins");
-                //				break;
-                //			case SECOND_WIN:
-                //				if(i==0)
-                //					System.out.println(player2.getPlayerName() + " Wins");
-                //				else
-                //					System.out.println(player1.getPlayerName() + " Wins");
-                //				break;
-                //			case INCOMPLETE_TREE:
-                //				break;
-                //			default:
-                //				break;
-                //			}
-            }
+            board.resetBoard();
+            result += playGame(player1, player2);
+            board.resetBoard();
+            result += playGame(player2, player1);
+
         }
         public int playGame(Individual startingPlayer, Individual secondPlayer)
         {

@@ -10,12 +10,12 @@ namespace TicTacToe
 {
     class DrawTree
     {
-        private const int NODE_DIAMETER = 16;
+        private const int NODE_DIAMETER = 22;
         private const int TREE_LEVEL_MARGIN = 50;
-        private const int TEXT_SIZE = 9;
+        private const int TEXT_SIZE = 14;
 
         Node rootNode;
-        Color nodeColor = Color.Green;
+        Color nodeColor = Color.Blue;
         int indentation = 0;
 
         Size nodeRadius = new Size(NODE_DIAMETER, NODE_DIAMETER);
@@ -31,7 +31,7 @@ namespace TicTacToe
             Point frameBegin = new Point(0, 0);
             Point frameEnd = new Point(treeForm.Size.Width, 0);
 
-            printTreeConsole(rootNode);                  // Print tree to Console
+           // printTreeConsole(rootNode);                  // Print tree to Console
 
             treeForm.Show();
             DrawTreeGUI(frameBegin, frameEnd, rootNode); // Draw Tree in GUI
@@ -100,12 +100,14 @@ namespace TicTacToe
         public void DrawString(string description, Point position, int size)
         {
             Font drawFont = new Font("Arial", size);
-            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            SolidBrush drawBrush = new SolidBrush(Color.Red);
             PointF drawPoint = new PointF(150.0F, 150.0F);
+
+            description = description.IndexOf(" ") > -1 ? description.Substring(0, description.IndexOf(" ")) : description;
 
             switch (description)
             {
-                case "CountNeightbors":
+                case "CountNeighbors":
                     description = "cn";
                     break;
                 case "CountRow":
@@ -160,8 +162,8 @@ namespace TicTacToe
                     description = " *";
                     break;
                 default:
-                    description = " ?";
                     Console.WriteLine("Uncknown Node description: {0}", description);
+                    description = " ?";
                     break;
             }
 

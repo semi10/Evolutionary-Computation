@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,6 +44,16 @@ namespace TicTacToe
             bestIndGen.SelectedIndex = 1;
             crossProb.SelectedIndex = 1;
             mutationProb.SelectedIndex = 1;
+
+            for (int i = 0; i < terminalSet.Items.Count; i++)
+            {
+                terminalSet.SetItemChecked(i, true);
+            }
+
+            for (int i = 0; i < funcSet.Items.Count; i++)
+            {
+                funcSet.SetItemChecked(i, true);
+            }
         }
 
         private void runEvo_Click(object sender, EventArgs e)
@@ -111,7 +122,14 @@ namespace TicTacToe
             Population population = new Population(popSize, selection, initialDepth, maxDepth, selectRandomMaxIndex, keepBestIndividualsInGeneration, functionList, terminalList);
             // initialize the evolution and start the evolution engine
             Evolution evolution = new Evolution(population, maxGenerations, playEveryNGame, playTournament, selectRandomMaxIndex);
-            bestIndividual = evolution.evolve();
+
+            Thread t2 = new Thread(delegate ()
+            {
+                bestIndividual = evolution.evolve();
+            });
+            t2.Start();
+            //bestIndividual = evolution.evolve();
+
             /*Thread runEvolutionThread = new Thread()
             {
 

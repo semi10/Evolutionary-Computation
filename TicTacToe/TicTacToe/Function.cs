@@ -96,9 +96,9 @@ namespace TicTacToe
         }
 
 
-        /*public string toString()
+        public string toString()
         {
             return functionlIdentity;
-        }*/
+        }
     }
 }

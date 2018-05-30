@@ -21,15 +21,15 @@ namespace TicTacToe
        // private readonly int ANOTHER_GAME = 1;
        // private readonly int QUIT = 2;
        // private readonly int DRAW = -1;
-        private readonly int HORIZONTAL_MARGIN = 66;
-        private readonly int VERTICAL_MARGIN = 74;
-        private readonly int BOARD_SIZE = 16;
+        private readonly int HORIZONTAL_MARGIN = 36;
+        private readonly int VERTICAL_MARGIN = 35;
+        private readonly int BOARD_SIZE = 25;
         private int playerTurn = 1;
        // private int playerValue;
-        private int SIZE = 4;
+        private int SIZE = 5;
         private int streak = 3;
         Button[] cell;
-
+        DrawTree drawTree;
         public GameGui(Game game, Individual opponent)
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace TicTacToe
             playerOne.setIsHumanPlayer(true);
             //this.treeDraw = treeDraw;
             this.playerTwo.setBoard(game.getBoard());
-
+            drawTree = new DrawTree(opponent.getStrategy());
         }
 
         private void GameGui_Load(object sender, EventArgs e)
@@ -52,8 +52,8 @@ namespace TicTacToe
             {
                 cell[i] = new Button();
                 cell[i].Size = cellSize;
-                cell[i].Top = cellSize.Height * (i / (int)Math.Sqrt(BOARD_SIZE));
-                cell[i].Left = cellSize.Width * (i % (int)Math.Sqrt(BOARD_SIZE));
+                cell[i].Top = cellSize.Height* (i / (int)Math.Sqrt(BOARD_SIZE));
+                cell[i].Left = cellSize.Width* (i % (int)Math.Sqrt(BOARD_SIZE));
                 cell[i].Click += new System.EventHandler(cellClick);
                 cell[i].Name = Convert.ToString(i);
                 cell[i].Tag = "0";
@@ -63,7 +63,7 @@ namespace TicTacToe
         }
          public void markOpponentMove()
         {
-            for(int i=0;i<16;i++)
+            for(int i=0;i< BOARD_SIZE; i++)
             {
                 if(game.getBoard().getIndexValue(i)==1)
                 {
@@ -100,6 +100,7 @@ namespace TicTacToe
                         MessageBox.Show("Player one is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         resetGame();
                         game.getBoard().resetBoard();
+                        playerTurn = 1;                       
                         return;
                     }
                     playerTurn = 2;
@@ -113,6 +114,8 @@ namespace TicTacToe
                             MessageBox.Show("Player two is the Winner!!!", "Winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             resetGame();
                             game.getBoard().resetBoard();
+                            playerTwo.makeStrategyMove();
+                            markOpponentMove();
                             playerTurn = 1;
                             return;
                         }

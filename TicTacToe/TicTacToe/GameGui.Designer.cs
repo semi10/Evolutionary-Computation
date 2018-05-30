@@ -32,10 +32,10 @@
             // 
             // GameGui
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 296);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ClientSize = new System.Drawing.Size(968, 912);
+            this.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.Name = "GameGui";
             this.Text = "GameGui";
             this.Load += new System.EventHandler(this.GameGui_Load);

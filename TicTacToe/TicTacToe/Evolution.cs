@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TicTacToe
@@ -18,7 +20,9 @@ namespace TicTacToe
       //  private Individual frankyOriginal;
        // private Individual franky;
         private bool playTournamentBool;
-       // private bool playWithFranky;
+        Stopwatch timer;
+        TimeSpan timespan;
+        // private bool playWithFranky;
         //private CSV_Writer reportGenerator;
 
         //private ProgressImage progressBar;
@@ -95,7 +99,14 @@ namespace TicTacToe
                 if (playTournamentBool)
                 {
                     // play the tournament
+
+                    timer = Stopwatch.StartNew();
+
                     playTournament();
+
+                    timer.Stop();
+                    timespan = timer.Elapsed;
+                    Console.WriteLine(String.Format("playTournament() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
                 }
                 /*if (playWithFranky)
                 {
@@ -115,9 +126,25 @@ namespace TicTacToe
                     frankyFitness.add(franky.getFitness());
                 }*/
                 // evaluate population fitness
+
+
+                timer = Stopwatch.StartNew();
+
                 population.evaluatePopulationFitness();
+
+                timer.Stop();
+                timespan = timer.Elapsed;
+                Console.WriteLine(String.Format("evaluatePopulationFitness() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
+
                 // sort the individuals by their fitness (higher fitness on lower index)
+                timer = Stopwatch.StartNew();
+
                 population.sort();
+
+                timer.Stop();
+                timespan = timer.Elapsed;
+                Console.WriteLine(String.Format("sort() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
+
                 // record the current generation data to .csv file
                 //writeGenerationData(gen);
                 Console.WriteLine("Generation " + gen + " of " + maxGenerations + ": " + getBest().getPlayerName() + " Fitness: " + getBest().getFitness());
@@ -173,7 +200,9 @@ namespace TicTacToe
 
         public void playTournament()
         {
+            int temp = 0;
             int popSize = population.getPopSize();
+
             for (int i = 0; i < popSize; i++)
             {
                 // if the population size is divisible by 10, there will be a progress indication every 10% (0% - 90%)
@@ -187,7 +216,11 @@ namespace TicTacToe
                     // play a match with individual at index [i] against individual at index [j]
                     game.playTwoSetMatch(population.getIndividualAtIndex(i), population.getIndividualAtIndex(j));
                 }
+
             }
+            
+
+
         }
 
         public void playHumanVsBest(Individual best)
