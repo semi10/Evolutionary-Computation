@@ -336,5 +336,18 @@ namespace TicTacToe
             return -1;
         }
 
+        private void anotherGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Board board = new Board();
+            Game game = new Game(board);
+            GameGui gui = new GameGui(game, playerTwo);
+            this.Close();
+            gui.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

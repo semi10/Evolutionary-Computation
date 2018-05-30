@@ -226,5 +226,10 @@ namespace TicTacToe
             PlayerOne.setBoard(board);
             PlayerTwo.setBoard(board);
         }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -51,7 +51,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.funcSet = new System.Windows.Forms.CheckedListBox();
             this.terminalSet = new System.Windows.Forms.CheckedListBox();
-            this.playAgainst = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // individualDepth
@@ -297,7 +297,7 @@
             // 
             // runEvo
             // 
-            this.runEvo.Location = new System.Drawing.Point(15, 328);
+            this.runEvo.Location = new System.Drawing.Point(18, 328);
             this.runEvo.Name = "runEvo";
             this.runEvo.Size = new System.Drawing.Size(114, 37);
             this.runEvo.TabIndex = 18;
@@ -365,23 +365,20 @@
             this.terminalSet.TabIndex = 22;
             this.terminalSet.Tag = "terminalSet";
             // 
-            // playAgainst
+            // progressBar1
             // 
-            this.playAgainst.Location = new System.Drawing.Point(191, 328);
-            this.playAgainst.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.playAgainst.Name = "playAgainst";
-            this.playAgainst.Size = new System.Drawing.Size(127, 37);
-            this.playAgainst.TabIndex = 23;
-            this.playAgainst.Text = "Play Against";
-            this.playAgainst.UseVisualStyleBackColor = true;
-            this.playAgainst.Click += new System.EventHandler(this.playAgainst_Click);
+            this.progressBar1.Location = new System.Drawing.Point(200, 328);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(198, 37);
+            this.progressBar1.TabIndex = 23;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // SettingsGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 377);
-            this.Controls.Add(this.playAgainst);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.terminalSet);
             this.Controls.Add(this.funcSet);
             this.Controls.Add(this.label11);
@@ -437,6 +434,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckedListBox funcSet;
         private System.Windows.Forms.CheckedListBox terminalSet;
-        private System.Windows.Forms.Button playAgainst;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
