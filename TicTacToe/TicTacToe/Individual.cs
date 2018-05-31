@@ -320,7 +320,6 @@ namespace TicTacToe
             swap2.paintNode(Color.Green);
 
             // make the reference swaps
-            //		System.out.println("Swapping " + swap1.TreeStr() + " with " + swap2.TreeStr() + " node #" + temp);
             this.getStrategyRoot().swapNodes(swap1, swap2.copy(swap2));
 
             // combine the parents name to create a new name

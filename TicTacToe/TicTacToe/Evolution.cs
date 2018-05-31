@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TicTacToe
 {
@@ -17,15 +19,9 @@ namespace TicTacToe
         private Game game;
         private int playEveryNGame;
         private bool selectRandomMaxIndex;
-      //  private Individual frankyOriginal;
-       // private Individual franky;
         private bool playTournamentBool;
         Stopwatch timer;
         TimeSpan timespan;
-        // private bool playWithFranky;
-        //private CSV_Writer reportGenerator;
-
-        //private ProgressImage progressBar;
 
         public Evolution(Population population, int maxGenerations, int playEveryNGame, bool playTournament, bool selectRandomMaxIndex)
         {
@@ -62,7 +58,7 @@ namespace TicTacToe
             this.playTournamentBool = playTournament;
         }
 
-        public Individual evolve()
+        public Individual evolve(BackgroundWorker worker)
         {
             /*
              * evolution engine
@@ -81,17 +77,14 @@ namespace TicTacToe
             double lastRoundTime = 0;
             double end;
 
-            // create the report file
-            //createReportFile();
             // scores arrays for graph plotting
             List<double> avgFitness = new List<double>();
             List<double> bestFitness = new List<double>();
-            //List<Double> frankyOriginalFitness = new ArrayList<Double>();
-            //List<Double> frankyFitness = new ArrayList<Double>();
 
             Console.WriteLine("Starting Evolution.....");
             for (gen = 1; gen <= maxGenerations; ++gen)
             {
+                worker.ReportProgress(gen * 100 / maxGenerations);
                 // get time before starting the next generation
                 lastRoundStart = currentTimeMillis();
                 // reset all individuals game results
@@ -102,31 +95,12 @@ namespace TicTacToe
 
                     timer = Stopwatch.StartNew();
 
-                    playTournament();
+                    playTournament(worker);
 
                     timer.Stop();
                     timespan = timer.Elapsed;
                     Console.WriteLine(String.Format("playTournament() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
                 }
-                /*if (playWithFranky)
-                {
-                    // reset franky's game results
-                    frankyOriginal.resetGameStats();
-                    franky.resetGameStats();
-                    // play a tournament against franky
-                    playTournamentAgainstFranky(frankyOriginal);
-                    playTournamentAgainstFranky(franky);
-                    // evaluate franky's fitness
-                    frankyOriginal.evalFitness();
-                    frankyOriginal.printStats();
-                    franky.evalFitness();
-                    franky.printStats();
-                    // add franky's fitness to array (for graph)
-                    frankyOriginalFitness.add(frankyOriginal.getFitness());
-                    frankyFitness.add(franky.getFitness());
-                }*/
-                // evaluate population fitness
-
 
                 timer = Stopwatch.StartNew();
 
@@ -198,13 +172,13 @@ namespace TicTacToe
             return getBest();
         }
 
-        public void playTournament()
+        public void playTournament(BackgroundWorker worker)
         {
-            int temp = 0;
             int popSize = population.getPopSize();
 
-            for (int i = 0; i < popSize; i++)
+            for (int i = 0; i < popSize; i++)          
             {
+                //worker.ReportProgress(i * 100 / popSize);
                 // if the population size is divisible by 10, there will be a progress indication every 10% (0% - 90%)
                 if (((float)(i * 100) / popSize) % 10 == 0)
                 {

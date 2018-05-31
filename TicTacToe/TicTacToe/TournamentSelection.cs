@@ -44,12 +44,10 @@ namespace TicTacToe.Properties
              */
             Random rnd = new Random();
             Individual p1 = selectBest(pop);
-            //      Individual p1 = pop[0];
             Individual prototype = new Individual(p1);
             if (rnd.NextDouble() < crossoverProb)
             {
                 Individual p2 = selectBest(pop);
-                //          Individual p2 = pop[1];
                 prototype = prototype.crossover2(p2);
             }
 

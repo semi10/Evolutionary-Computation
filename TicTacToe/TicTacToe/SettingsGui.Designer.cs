@@ -52,6 +52,8 @@
             this.funcSet = new System.Windows.Forms.CheckedListBox();
             this.terminalSet = new System.Windows.Forms.CheckedListBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // individualDepth
@@ -297,9 +299,9 @@
             // 
             // runEvo
             // 
-            this.runEvo.Location = new System.Drawing.Point(18, 328);
+            this.runEvo.Location = new System.Drawing.Point(34, 321);
             this.runEvo.Name = "runEvo";
-            this.runEvo.Size = new System.Drawing.Size(114, 37);
+            this.runEvo.Size = new System.Drawing.Size(114, 23);
             this.runEvo.TabIndex = 18;
             this.runEvo.Text = "Run Evolution";
             this.runEvo.UseVisualStyleBackColor = true;
@@ -367,17 +369,32 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(200, 328);
+            this.progressBar1.Location = new System.Drawing.Point(0, 0);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(198, 37);
-            this.progressBar1.TabIndex = 23;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 0;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(200, 321);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(199, 23);
+            this.progressBar2.TabIndex = 23;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // SettingsGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 377);
+            this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.terminalSet);
             this.Controls.Add(this.funcSet);
@@ -435,5 +452,7 @@
         private System.Windows.Forms.CheckedListBox funcSet;
         private System.Windows.Forms.CheckedListBox terminalSet;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

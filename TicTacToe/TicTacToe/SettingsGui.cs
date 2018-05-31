@@ -21,7 +21,6 @@ namespace TicTacToe
         private int keepBestIndividualsInGeneration = 0; // amount of best individuals to keep from the old generation (pop[0],pop[1],...,pop[keepBestIndividualsInGeneration-1])
         private int playEveryNGame = 100; // determines how often there will be a game against human player (-1 for None)
         private bool playTournament = false;
-        //private bool playWithFranky = true;
         private double mutationProbability = 0.2;
         private double crossoverProb = 0.8;
 
@@ -70,15 +69,10 @@ namespace TicTacToe
             keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.SelectedItem.ToString()));
             // determines how often there will be a game against human player (0 for None)
             playEveryNGame = (Int32.Parse(bestIndGen.SelectedItem.ToString()));
-            //playTournament = (Int32.Parse(inputPlayEachOther.SelectedItem.ToString()));
-            playTournament = true;
-            //playWithFranky = (Int32.Parse(inputFrankyTournament.SelectedItem.ToString()));
-            /*if (!playTournament)
-                validInput = false;*/
+            playTournament = true;       
             crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
             mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
-            //progressEvolution.setPercentage(0);
-            //progressEvolution.setImageSize();
+
 
             initializeEvolutionValuesAndRun();
         }
@@ -97,53 +91,29 @@ namespace TicTacToe
             keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.SelectedItem.ToString()));
             // determines how often there will be a game against human player (0 for None)
             playEveryNGame = (Int32.Parse(bestIndGen.SelectedItem.ToString()));
-            //playTournament = (Int32.Parse(inputPlayEachOther.SelectedItem.ToString()));
-            //playWithFranky = (Int32.Parse(inputFrankyTournament.SelectedItem.ToString()));
-            /*if (!playTournament && !playWithFranky)
-                validInput = false;*/
+
             crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
             mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
-            //progressEvolution.setPercentage(0);
-            //progressEvolution.setImageSize();
 
             initializeFunctionTerminalSets();
 
             if (!validInput)
             {
-                //JOptionPane.showMessageDialog(frame, "Missing Input!\nEither Tournament Mode is Unselected Or Missing Function/Terminal");
                 validInput = true;
                 return;
             }
-            //Function.setFunctionList(functionList);
-            //Terminal.setTerminalList(terminalList);
 
             // initialize the selection method and the new population
             Selection selection = new Selection(mutationProbability, crossoverProb);
             Population population = new Population(popSize, selection, initialDepth, maxDepth, selectRandomMaxIndex, keepBestIndividualsInGeneration, functionList, terminalList);
             // initialize the evolution and start the evolution engine
             Evolution evolution = new Evolution(population, maxGenerations, playEveryNGame, playTournament, selectRandomMaxIndex);
+            //Thread t2 = new Thread(delegate ()
+            //{
+                bestIndividual = evolution.evolve(backgroundWorker1);
+            //});
+            //t2.Start();
 
-            Thread t2 = new Thread(delegate ()
-            {
-                bestIndividual = evolution.evolve();
-            });
-            t2.Start();
-            //bestIndividual = evolution.evolve();
-
-            /*Thread runEvolutionThread = new Thread()
-            {
-
-            public void run()
-        {
-            btnRunEvolution.setEnabled(false);
-            bestIndividual = evolution.evolve();
-            if (comboBoxPlayerTwo.getItemCount() == 4)
-                comboBoxPlayerTwo.addItem("Best Individual From Last Evolution");
-            btnRunEvolution.setEnabled(true);
-        }
-    };
-    runEvolutionThread.start();
-        */
         }
 
 
@@ -227,9 +197,24 @@ namespace TicTacToe
             PlayerTwo.setBoard(board);
         }
 
-        private void progressBar1_Click(object sender, EventArgs e)
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (backgroundWorker1.CancellationPending)
+                e.Cancel = true;
+        }
 
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar2.Value = e.ProgressPercentage;           
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                MessageBox.Show("You have canceled the job");
+                progressBar2.Value = 0;
+            }
         }
     }
 }

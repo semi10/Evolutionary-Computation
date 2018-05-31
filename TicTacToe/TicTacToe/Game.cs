@@ -38,7 +38,6 @@ namespace TicTacToe
             player1.setBoard(board);
             player2.setBoard(board);
 
-            //		System.out.println("Game Between: " + player1.getPlayerName() + " And " + player2.getPlayerName());;
             // make two iteration, each time let another player start (change the order of parameters in playGame method)
             board.resetBoard();
             result += playGame(player1, player2);
@@ -54,16 +53,12 @@ namespace TicTacToe
             startingPlayer.setValue(1);
             // set the second player value to 2 ('O')
             secondPlayer.setValue(2);
-            //		System.out.println(startingPlayer.getPlayerName() + " Is 'X'");
-            //		System.out.println(secondPlayer.getPlayerName() + " Is 'O'");
-            //		System.out.println("Player " + startingPlayer.getPlayerName() + " Starts");
             while (true)
             {
 
                 // starting player code block
                 //////////////////////////////////////
                 // can make either a random move or a move using the strategy tree
-                //startingPlayer.makeRandomMove();
                 if (!startingPlayer.makeStrategyMove())
                 {
                     // an attempt to make a move on an occupied space was made
@@ -81,7 +76,6 @@ namespace TicTacToe
 
                 // second player code block
                 //////////////////////////////////////
-                //secondPlayer.makeRandomMove();
                 if (!secondPlayer.makeStrategyMove())
                 {
                     Console.WriteLine("Move " + secondPlayer.getValue() + " Failed");
@@ -116,8 +110,6 @@ namespace TicTacToe
                     Console.WriteLine("CATASTROPHIC FAILURE!!!");
                     break;
             }
-            //		System.out.println("Final Board State:");
-            //		printBoard();
             return result;
         }
 

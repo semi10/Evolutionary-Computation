@@ -13,19 +13,12 @@ namespace TicTacToe
     public partial class GameGui : Form
     {
         private Game game;
-      //  private readonly int WIDTH = 600;
-       // private readonly int HEIGHT = 600;
         private Individual playerOne;
         private Individual playerTwo;
-       // private readonly int CONTINUE = 0;
-       // private readonly int ANOTHER_GAME = 1;
-       // private readonly int QUIT = 2;
-       // private readonly int DRAW = -1;
         private readonly int HORIZONTAL_MARGIN = 36;
         private readonly int VERTICAL_MARGIN = 35;
         private readonly int BOARD_SIZE = 25;
         private int playerTurn = 1;
-       // private int playerValue;
         private int SIZE = 5;
         private int streak = 3;
         Button[] cell;
@@ -38,7 +31,6 @@ namespace TicTacToe
             playerOne = new Individual(game.getBoard(), "Player One", false, null, null);
             playerOne.setValue(1);
             playerOne.setIsHumanPlayer(true);
-            //this.treeDraw = treeDraw;
             this.playerTwo.setBoard(game.getBoard());
             drawTree = new DrawTree(opponent.getStrategy());
         }
@@ -223,57 +215,6 @@ namespace TicTacToe
                         col++;
                 }
             }
-
-            /////// ABORTED DUE TO CHECKING OF EACH COORDINATE'S DIAGONALS ///////
-            //		// check main diagonal
-            //		count=0;
-            //		for(int i=0; i<SIZE*SIZE; i+=SIZE+1){
-            //			/*
-            //			 * main diagonal checking example:
-            //			 *     0 1 2
-            //			 *  ---------  
-            //			 * 0|  0 1 2
-            //			 * 1|  3 4 5
-            //			 * 2|  6 7 8
-            //			 * 
-            //			 * for location 0, 4, 8 checking
-            //			 * location 0: i=0 SIZE=3
-            //			 * location 4: i increased by SIZE + 1 --> 0 += SIZE+1 --> 0 += 3+1 --> i=4
-            //			 * location 8: i increased by SIZE + 1 --> 4 += SIZE+1 --> 4 += 3+1 --> 4 += 4 --> i=8 
-            //			 */
-            //			if(board[i] == player.getValue())
-            //				count++;
-            //			else
-            //				count = 0;
-            //			if (count == SIZE/2)
-            //				return player.getValue();
-            //		}
-            //		//		if (count == SIZE)
-            //		//			return player.getValue();
-            //
-            //		// check secondary diagonal
-            //		count=0;
-            //		for(int i=SIZE-1; i<SIZE*SIZE-1; i+=SIZE-1){
-            //			/*
-            //			 * secondary diagonal checking example:
-            //			 *     0 1 2
-            //			 *  ---------  
-            //			 * 0|  0 1 2
-            //			 * 1|  3 4 5
-            //			 * 2|  6 7 8
-            //			 * 
-            //			 * for location 2, 4, 6 checking
-            //			 * location 0: i=SIZE-1 --> i=3-1 --> i=2 SIZE=3
-            //			 * location 4: i increased by SIZE - 1 --> 2 += SIZE-1 --> 2 += 3-1 --> 2 += 2 --> i=4
-            //			 * location 6: i increased by SIZE - 1 --> 4 += SIZE-1 --> 4 += 3-1 --> 4 += 2 --> i=6
-            //			 */
-            //			if(board[i] == player.getValue())
-            //				count++;
-            //			else
-            //				count = 0;
-            //			if (count == SIZE/2)
-            //				return player.getValue();
-            //		}
 
             // check Left To Right diagonals from top to bottom (main diagonals)
             for (int i = 0; i < SIZE * SIZE; i++)
