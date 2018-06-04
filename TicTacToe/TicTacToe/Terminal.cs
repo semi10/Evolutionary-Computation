@@ -8,25 +8,21 @@ namespace TicTacToe
 {
     public class Terminal : Node
     {
-        private int MAX_RAND_VALUE = 11;    // max randomly generated value for RandVal terminal
+        private int MAX_RAND_VALUE = 5;    // max randomly generated value for RandVal terminal
         private int value = -1;             // generated value for RandMax terminal
         private int friendOrEnemy;          // generated randomly 1 (1 for FRIEND, 2 for ENEMY)
         private string terminalIdentity = "UNINITIALIZED";
         private Individual individual;
         Random rnd = new Random();
         private static string[] allowedTerminalList = {
-            "CountNeighbors",
-            "CountRow",
+            "NeighborsAmount",
+            "RowAmount",
             "RowStreak",
-            "CountColumn",
+            "ColumnAmount",
             "ColumnStreak",
-            "CountDiagMain",
-            "DiagMainStreak",
-            "CountDiagSec",
-            "DiagSecStreak",
-            "CornerCount",
+            "PrimaryDiagStreak",
+            "SecDiagStreak",
             "RandVal",
-            "IsRandIndex",
             "WinOrBlock"
         };
 
@@ -86,32 +82,24 @@ namespace TicTacToe
             // call the proper method (stored as a string in terminalIdentity variable)
             // all methods but the countCorners receives 2 arguments:
             // index argument and playerNum argument which represent looking for a friend or an enemy
-            if (terminalIdentity.Equals("WinOrBlock", StringComparison.OrdinalIgnoreCase))
+            if (terminalIdentity.Equals("WinMove", StringComparison.OrdinalIgnoreCase))
                 grade = (board.willWinBlock(index, playerNum)) ? Int32.MaxValue : 0;
-            if (terminalIdentity.Equals("CountNeightbors", StringComparison.OrdinalIgnoreCase))
+            if (terminalIdentity.Equals("NeightborsAmount", StringComparison.OrdinalIgnoreCase))
                 grade = board.countNeighbors(index, playerNum);
-            if (terminalIdentity.Equals("CountRow", StringComparison.OrdinalIgnoreCase))
+            if (terminalIdentity.Equals("RowAmount", StringComparison.OrdinalIgnoreCase))
                 grade = board.countRow(index, playerNum);
             if (terminalIdentity.Equals("RowStreak", StringComparison.OrdinalIgnoreCase))
                 grade = board.countRowStreak(index, playerNum);
-            if (terminalIdentity.Equals("CountColumn", StringComparison.OrdinalIgnoreCase))
+            if (terminalIdentity.Equals("ColumnAmount", StringComparison.OrdinalIgnoreCase))
                 grade = board.countColumn(index, playerNum);
             if (terminalIdentity.Equals("ColumnStreak", StringComparison.OrdinalIgnoreCase))
                 grade = board.countColumnStreak(index, playerNum);
-            if (terminalIdentity.Equals("CountDiagMain", StringComparison.OrdinalIgnoreCase))
-                grade = board.countDiagMain(index, playerNum);
-            if (terminalIdentity.Equals("DiagMainStreak", StringComparison.OrdinalIgnoreCase))
+            if (terminalIdentity.Equals("PrimaryDiagStreak", StringComparison.OrdinalIgnoreCase))
                 grade = board.countDiagMainStreak(index, playerNum);
-            if (terminalIdentity.Equals("CountDiagSec", StringComparison.OrdinalIgnoreCase))
-                grade = board.countDiagSec(index, playerNum);
-            if (terminalIdentity.Equals("DiagSecStreak", StringComparison.OrdinalIgnoreCase))
+            if (terminalIdentity.Equals("SecDiagStreak", StringComparison.OrdinalIgnoreCase))
                 grade = board.countDiagSecStreak(index, playerNum);
-            if (terminalIdentity.Equals("CornerCount", StringComparison.OrdinalIgnoreCase))
-                grade = board.countCorners(playerNum);
             if (terminalIdentity.Equals("RandVal", StringComparison.OrdinalIgnoreCase))
                 grade = value;
-            if (terminalIdentity.Equals("IsRandIndex", StringComparison.OrdinalIgnoreCase))
-                grade = (value == index) ? 1 : 0;
 
             return grade;
         }
@@ -132,8 +120,6 @@ namespace TicTacToe
 
             if (terminalIdentity.Equals("RandVal", StringComparison.OrdinalIgnoreCase))
                 value = rnd.Next(0, MAX_RAND_VALUE);
-            else if (terminalIdentity.Equals("IsRandIndex", StringComparison.OrdinalIgnoreCase))
-                value = (rnd.Next(0, board.getBoardSize()));
             else
                 friendOrEnemy = rnd.Next(1,2);
         }
@@ -166,8 +152,6 @@ namespace TicTacToe
             }
             if (terminalIdentity.Equals("RandVal", StringComparison.OrdinalIgnoreCase))
                 value = rnd.Next(0, MAX_RAND_VALUE);
-            else if (terminalIdentity.Equals("IsRandIndex", StringComparison.OrdinalIgnoreCase))
-                value = rnd.Next(0, board.getBoardSize());
             else
                 friendOrEnemy = rnd.Next(1, 2);
         }
@@ -187,7 +171,7 @@ namespace TicTacToe
          */
         public string toString()
         {
-            if ((terminalIdentity.Equals("RandVal", StringComparison.OrdinalIgnoreCase)) || (terminalIdentity.Equals("IsRandIndex", StringComparison.OrdinalIgnoreCase)))
+            if ((terminalIdentity.Equals("RandVal", StringComparison.OrdinalIgnoreCase)))
                 return terminalIdentity + " " + value;
             return terminalIdentity + " " + ((friendOrEnemy == 1) ? "f" : "e");
         }
