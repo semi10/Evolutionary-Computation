@@ -34,15 +34,15 @@ namespace TicTacToe
         public SettingsGui()
         {
             InitializeComponent();
-            individualDepth.SelectedIndex = 1;
-            maxInvidualDepth.SelectedIndex = 1;
+            individualDepth.Value = 4;
+            maxInvidualDepth.Value = 4;
             bestEvalSelectMethod.SelectedIndex = 1;
-            populationSize.SelectedIndex = 1;
-            maxGen.SelectedIndex = 1;
-            amountOfBestInd.SelectedIndex = 1;
-            bestIndGen.SelectedIndex = 1;
-            crossProb.SelectedIndex = 1;
-            mutationProb.SelectedIndex = 1;
+            populationSize.Value = 50;
+            maxGen.Value = 5;
+            amountOfBestInd.Value = 5;
+            bestIndGen.Value = 10;
+            crossProb.Value = 8;
+            mutationProb.Value = 2;
 
             for (int i = 0; i < terminalSet.Items.Count; i++)
             {
@@ -57,21 +57,22 @@ namespace TicTacToe
 
         private void runEvo_Click(object sender, EventArgs e)
         {
-            initialDepth = Int32.Parse(individualDepth.SelectedItem.ToString());
-            maxDepth = Int32.Parse(maxInvidualDepth.SelectedItem.ToString());
+            //MessageBox.Show(individualDepth.Value.ToString());
+            initialDepth = Int32.Parse(individualDepth.Value.ToString());
+            maxDepth = Int32.Parse(maxInvidualDepth.Value.ToString());
             // choose whether to select first maximal value index or a random (if there are multiples)
             selectRandomMaxIndex = bestEvalSelectMethod.SelectedIndex == 0;
-            popSize = (Int32.Parse(populationSize.SelectedItem.ToString()));
+            popSize = (Int32.Parse(populationSize.Value.ToString()));
             if (popSize == 0)
                 popSize = 1;
-            maxGenerations = (Int32.Parse(maxGen.SelectedItem.ToString()));
+            maxGenerations = (Int32.Parse(maxGen.Value.ToString()));
             // amount of best individuals to keep from the old generation (pop[0],pop[1],...,pop[keepBestIndividualsInGeneration-1])
-            keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.SelectedItem.ToString()));
+            keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.Value.ToString()));
             // determines how often there will be a game against human player (0 for None)
-            playEveryNGame = (Int32.Parse(bestIndGen.SelectedItem.ToString()));
+            playEveryNGame = (Int32.Parse(bestIndGen.Value.ToString()));
             playTournament = true;       
-            crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
-            mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
+            crossoverProb = Convert.ToDouble((crossProb.Value)) * 0.1;
+            mutationProbability = Convert.ToDouble(mutationProb.Value) * 0.1;
 
 
             initializeEvolutionValuesAndRun();
@@ -79,21 +80,21 @@ namespace TicTacToe
 
         public void initializeEvolutionValuesAndRun()
         {
-            initialDepth = Int32.Parse(individualDepth.SelectedItem.ToString());
-            maxDepth = Int32.Parse(maxInvidualDepth.SelectedItem.ToString());
+            initialDepth = Int32.Parse(individualDepth.Value.ToString());
+            maxDepth = Int32.Parse(maxInvidualDepth.Value.ToString());
             // choose whether to select first maximal value index or a random (if there are multiples)
             selectRandomMaxIndex = bestEvalSelectMethod.SelectedIndex == 0;
-            popSize = (Int32.Parse(populationSize.SelectedItem.ToString()));
+            popSize = (Int32.Parse(populationSize.Value.ToString()));
             if (popSize == 0)
                 popSize = 1;
-            maxGenerations = (Int32.Parse(maxGen.SelectedItem.ToString()));
+            maxGenerations = (Int32.Parse(maxGen.Value.ToString()));
             // amount of best individuals to keep from the old generation (pop[0],pop[1],...,pop[keepBestIndividualsInGeneration-1])
-            keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.SelectedItem.ToString()));
+            keepBestIndividualsInGeneration = (Int32.Parse(amountOfBestInd.Value.ToString()));
             // determines how often there will be a game against human player (0 for None)
-            playEveryNGame = (Int32.Parse(bestIndGen.SelectedItem.ToString()));
+            playEveryNGame = (Int32.Parse(bestIndGen.Value.ToString()));
 
-            crossoverProb = Convert.ToDouble((crossProb.SelectedItem)) * 0.1;
-            mutationProbability = Convert.ToDouble(mutationProb.SelectedItem) * 0.1;
+            crossoverProb = Convert.ToDouble((crossProb.Value)) * 0.1;
+            mutationProbability = Convert.ToDouble(mutationProb.Value) * 0.1;
 
             initializeFunctionTerminalSets();
 
@@ -216,5 +217,6 @@ namespace TicTacToe
                 progressBar2.Value = 0;
             }
         }
+
     }
 }
