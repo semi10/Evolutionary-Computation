@@ -15,8 +15,8 @@ namespace TicTacToe
         private Game game;
         private Individual playerOne;
         private Individual playerTwo;
-        private readonly int HORIZONTAL_MARGIN = 36;
-        private readonly int VERTICAL_MARGIN = 35;
+        private readonly int HORIZONTAL_MARGIN = 72;
+        private readonly int VERTICAL_MARGIN = 65;
         private readonly int BOARD_SIZE = 25;
         private int playerTurn = 1;
         private int SIZE = 5;
@@ -44,7 +44,7 @@ namespace TicTacToe
             {
                 cell[i] = new Button();
                 cell[i].Size = cellSize;
-                cell[i].Top = cellSize.Height* (i / (int)Math.Sqrt(BOARD_SIZE));
+                    cell[i].Top = cellSize.Height * (i / (int)Math.Sqrt(BOARD_SIZE + 10))+25;
                 cell[i].Left = cellSize.Width* (i % (int)Math.Sqrt(BOARD_SIZE));
                 cell[i].Click += new System.EventHandler(cellClick);
                 cell[i].Name = Convert.ToString(i);
