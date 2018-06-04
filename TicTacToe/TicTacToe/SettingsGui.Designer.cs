@@ -51,7 +51,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.funcSet = new System.Windows.Forms.CheckedListBox();
             this.terminalSet = new System.Windows.Forms.CheckedListBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
@@ -367,13 +366,6 @@
             this.terminalSet.TabIndex = 22;
             this.terminalSet.Tag = "terminalSet";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(0, 0);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
-            this.progressBar1.TabIndex = 0;
-            // 
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(200, 321);
@@ -395,7 +387,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 377);
             this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.terminalSet);
             this.Controls.Add(this.funcSet);
             this.Controls.Add(this.label11);
@@ -420,7 +411,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.individualDepth);
             this.Name = "SettingsGui";
-            this.Text = "Form1";
+            this.Text = "Initialize Evolution";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,7 +442,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckedListBox funcSet;
         private System.Windows.Forms.CheckedListBox terminalSet;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
