@@ -216,6 +216,5 @@ namespace TicTacToe
                 progressBar2.Value = 0;
             }
         }
-
     }
 }
