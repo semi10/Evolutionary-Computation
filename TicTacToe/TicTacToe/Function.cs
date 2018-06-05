@@ -64,8 +64,6 @@ namespace TicTacToe
 
         public void setRandFunction()
         {
-            //if(functionlIdentity.equalsIgnoreCase("UNINITIALIZED"))
-            //functionlIdentity = functionList[(int) (Math.random()*functionList.length)];
             functionlIdentity = individual.getRandomFunction();
             if (functionlIdentity == null)
             {

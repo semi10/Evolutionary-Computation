@@ -57,7 +57,6 @@ namespace TicTacToe
 
         private void runEvo_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(individualDepth.Value.ToString());
             initialDepth = Int32.Parse(individualDepth.Value.ToString());
             maxDepth = Int32.Parse(maxInvidualDepth.Value.ToString());
             // choose whether to select first maximal value index or a random (if there are multiples)
