@@ -110,23 +110,14 @@ namespace TicTacToe
                 case "If":
                     description = "If";
                     break;
-                case "CountNeighbors":
-                    description = "cn";
+                case "NeighborsAmount":
+                    description = "na";
                     break;
-                case "CountRow":
-                    description = "cr";
+                case "RowAmount":
+                    description = "ra";
                     break;
-                case "CountColumn":
-                    description = "cc";
-                    break;
-                case "CountDiagMain":
-                    description = "cdm";
-                    break;
-                case "CountDiagSec":
-                    description = "cds";
-                    break;
-                case "CornerCount":
-                    description = "cc";
+                case "ColumnAmount":
+                    description = "ca";
                     break;
                 case "RowStreak":
                     description = "rs";
@@ -134,20 +125,20 @@ namespace TicTacToe
                 case "ColumnStreak":
                     description = "cs";
                     break;
-                case "DiagMainStreak":
-                    description = "dms";
+                case "PrimaryDiagStreak":
+                    description = "pds";
                     break;
-                case "DiagSecStreak":
-                    description = "dss";
+                case "SecDiagStreak":
+                    description = "sds";
                     break;
                 case "RandVal":
                     description = "rv";
                     break;
-                case "IsRandIndex":
-                    description = "ri";
+                case "WinMove":
+                    description = "wm";
                     break;
-                case "WinOrBlock":
-                    description = "wb";
+                case "LoseMove":
+                    description = "lm";
                     break;
                 case "If <=":
                     description = "<=";

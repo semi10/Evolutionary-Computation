@@ -218,6 +218,8 @@
             this.terminalSet.AccessibleName = "termSet";
             this.terminalSet.FormattingEnabled = true;
             this.terminalSet.Items.AddRange(new object[] {
+            "WinMove",
+            "LoseMove",
             "NeighborsAmount",
             "RowAmount",
             "RowStreak",
@@ -225,8 +227,7 @@
             "ColumnStreak",
             "PrimaryDiagStreak",
             "SecDiagStreak",
-            "RandVal",
-            "WinMove"});
+            "RandVal"});
             this.terminalSet.Location = new System.Drawing.Point(805, 93);
             this.terminalSet.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.terminalSet.Name = "terminalSet";

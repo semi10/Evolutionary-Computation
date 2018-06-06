@@ -138,32 +138,29 @@ namespace TicTacToe
 
             foreach (var i in terminalSet.CheckedItems)
             {
-                if (i.ToString() == "CountNeighbors")
-                    terminalList.Add("CountNeighbors");
-                if (i.ToString() == "CornerCount")
-                    terminalList.Add("CornerCount");
-                if (i.ToString() == "WinOrBlock")
-                    terminalList.Add("WinOrBlock");
-                if (i.ToString() == "CountRow")
-                    terminalList.Add("CountRow");
-                if (i.ToString() == "CountColumn")
-                    terminalList.Add("CountColumn");
-                if (i.ToString() == "CountDiagMain")
-                    terminalList.Add("CountDiagMain");
-                if (i.ToString() == "CountDiagSec")
-                    terminalList.Add("CountDiagSec");
+                
+
+
+                if (i.ToString() == "NeighborsAmount")
+                    terminalList.Add("NeighborsAmount");
+                if (i.ToString() == "WinMove")
+                    terminalList.Add("WinMove");
+                if (i.ToString() == "LoseMove")
+                    terminalList.Add("LoseMove");
+                if (i.ToString() == "RowAmount")
+                    terminalList.Add("RowAmount");
+                if (i.ToString() == "ColumnAmount")
+                    terminalList.Add("ColumnAmount");
                 if (i.ToString() == "RowStreak")
                     terminalList.Add("RowStreak");
                 if (i.ToString() == "ColumnStreak")
                     terminalList.Add("ColumnStreak");
-                if (i.ToString() == "DiagMainStreak")
-                    terminalList.Add("DiagMainStreak");
-                if (i.ToString() == "DiagSecStreak")
-                    terminalList.Add("DiagSecStreak");
+                if (i.ToString() == "PrimaryDiagStreak")
+                    terminalList.Add("PrimaryDiagStreak");
+                if (i.ToString() == "SecDiagStreak")
+                    terminalList.Add("SecDiagStreak");
                 if (i.ToString() == "RandVal")
                     terminalList.Add("RandVal");
-                if (i.ToString() == "IsRandIndex")
-                    terminalList.Add("IsRandIndex");
             }
 
             this.functionList = functionList.ToArray();

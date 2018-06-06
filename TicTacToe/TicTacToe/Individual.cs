@@ -30,12 +30,12 @@ namespace TicTacToe
         private readonly int STARTED_GAME = 0;
         private readonly int NOT_STARTED_GAME = 1;
         // constants for fitness evaluation
-        private readonly double WIN_START_FACTOR = 1;
-        private readonly double WIN_NOT_START_FACTOR = 2;
+        private readonly double WIN_START_FACTOR = 0.5;
+        private readonly double WIN_NOT_START_FACTOR = 1;
         private readonly double LOSE_START_FACTOR = 0;
         private readonly double LOSE_NOT_START_FACTOR = 0;
-        private readonly double DRAW_START_FACTOR = 0.3;
-        private readonly double DRAW_NOT_START_FACTOR = 0.7;
+        private readonly double DRAW_START_FACTOR = 0.2;
+        private readonly double DRAW_NOT_START_FACTOR = 0.4;
 
         static Random rnd = new Random();
 
@@ -396,7 +396,7 @@ namespace TicTacToe
                 else
                 {
                     // grade free spaces by running the evaluation tree on the location
-                    gradesBoard[i] = Math.Abs(strategy.getRoot().evalIndexGrade(strategy.getRoot(), i))/2;
+                    gradesBoard[i] = Math.Abs(strategy.getRoot().evalIndexGrade(strategy.getRoot(), i));
                     //				gradesBoard[i] = strategy.getRoot().evalIndexGrade(strategy.getRoot(),i);
                     if (gradesBoard[i] >= max)
                         max = gradesBoard[i];
