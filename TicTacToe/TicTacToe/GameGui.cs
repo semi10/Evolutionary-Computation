@@ -21,7 +21,7 @@ namespace TicTacToe
         private int playerTurn = 1;
         private int SIZE = 5;
         private int streak = 3;
-        Button[] cell;
+        private Button[] cell;
         DrawTree drawTree;
         public GameGui(Game game, Individual opponent)
         {
@@ -44,7 +44,7 @@ namespace TicTacToe
             {
                 cell[i] = new Button();
                 cell[i].Size = cellSize;
-                    cell[i].Top = cellSize.Height * (i / (int)Math.Sqrt(BOARD_SIZE + 10))+25;
+                cell[i].Top = cellSize.Height * (i / (int)Math.Sqrt(BOARD_SIZE + 10))+25;
                 cell[i].Left = cellSize.Width* (i % (int)Math.Sqrt(BOARD_SIZE));
                 cell[i].Click += new System.EventHandler(cellClick);
                 cell[i].Name = Convert.ToString(i);
@@ -99,7 +99,7 @@ namespace TicTacToe
                     if(playerTwo.makeStrategyMove()&&playerTurn==2)
                     {
                         markOpponentMove();
-                        
+                        playerTwo.printEvaluatedBoard();
                         checkWin(playerTurn);
                         if (checkWin(playerTurn) == 2)
                         {
