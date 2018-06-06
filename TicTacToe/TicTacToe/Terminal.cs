@@ -23,7 +23,7 @@ namespace TicTacToe
             "PrimaryDiagStreak",
             "SecDiagStreak",
             "RandVal",
-            "WinOrBlock"
+            "WinMove"
         };
 
 

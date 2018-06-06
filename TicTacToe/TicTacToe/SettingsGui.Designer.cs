@@ -218,19 +218,15 @@
             this.terminalSet.AccessibleName = "termSet";
             this.terminalSet.FormattingEnabled = true;
             this.terminalSet.Items.AddRange(new object[] {
-            "CountNeighbors",
-            "CornerCount",
-            "WinOrBlock",
-            "CountRow",
-            "CountColumn",
-            "CountDiagMain",
-            "CountDiagSec",
+            "NeighborsAmount",
+            "RowAmount",
             "RowStreak",
+            "ColumnAmount",
             "ColumnStreak",
-            "DiagMainStreak",
-            "DiagSecStreak",
+            "PrimaryDiagStreak",
+            "SecDiagStreak",
             "RandVal",
-            "IsRandIndex"});
+            "WinMove"});
             this.terminalSet.Location = new System.Drawing.Point(805, 93);
             this.terminalSet.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.terminalSet.Name = "terminalSet";
