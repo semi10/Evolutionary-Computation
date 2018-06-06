@@ -15,6 +15,7 @@ namespace TicTacToe
         private double fitness;
         private Tree strategy;
         private Board board;
+        private long[] gradesBoard;
         private bool selectRandomMaxIndex; // decides whether to choose first encountered max index, or a random in case of multiple maximums
                                            // the arrays of game results (draws, losses, wins) represent a game result
                                            // index 0 represent the result when the player started the game
@@ -36,7 +37,7 @@ namespace TicTacToe
         private readonly double DRAW_START_FACTOR = 0.3;
         private readonly double DRAW_NOT_START_FACTOR = 0.7;
 
-        Random rnd = new Random();
+        static Random rnd = new Random();
 
 
         public Individual(Board board, string playerName, bool selectRandomMaxIndex, string[] functionList, string[] terminalList)
@@ -251,7 +252,6 @@ namespace TicTacToe
              * randomly choose a node from each cloned parent
              * swap the nodes
              */
-            Random rand = new Random();
             int randNum;
             const int MIN = 2;
             Individual[] children = new Individual[2];
@@ -295,7 +295,6 @@ namespace TicTacToe
              * randomly choose a node from each cloned parent
              * swap the nodes
              */
-            Random rand = new Random();
             int randNum;
             const int MIN = 2;
             // Node objects to temporary hold the returned references
@@ -333,7 +332,6 @@ namespace TicTacToe
              * randomly choose a node and swap it with randomly generated tree with max depth of 3
              * (not a full tree)
              */
-            Random rand = new Random();
             int randNum;
             Individual mutatedIndividual = new Individual(this);
             const int MIN = 2;
@@ -386,7 +384,7 @@ namespace TicTacToe
              *  evaluate the board by running the strategy tree on each of the board's indexes
              *  the index with max value is the chosen one
              */
-            long[] gradesBoard = new long[strategy.getRoot().getBoard().getBoardSize()];
+            gradesBoard = new long[strategy.getRoot().getBoard().getBoardSize()];
             long max = int.MinValue;
             for (int i = 0; i < gradesBoard.Length; i++)
             {
@@ -448,22 +446,23 @@ namespace TicTacToe
         }
 
 
-        public void printEvaluatedBoard(long[] board)
+        public void printEvaluatedBoard()
         {
             /*
              *  prints the evaluation grades board
              */
-            for (int i = 0; i < board.Length; i++)
+            for (int i = 0; i < gradesBoard.Length; i++)
             {
                 if (i % getBoard().getBoardSizeRow() == 0)
                 {
                     Console.WriteLine();
-                    Console.WriteLine(i + " | ");
+                    Console.Write("{0, -2} | ", i );
                 }
-                Console.WriteLine(" " + board[i] + " ");
+                Console.Write(" {0, -3} ", gradesBoard[i]);
             }
             Console.WriteLine();
         }
+
         public int getRandomFreeIndex()
         {
             /*

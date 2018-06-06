@@ -107,6 +107,9 @@ namespace TicTacToe
 
             switch (description)
             {
+                case "If":
+                    description = "If";
+                    break;
                 case "CountNeighbors":
                     description = "cn";
                     break;
@@ -162,7 +165,7 @@ namespace TicTacToe
                     description = " *";
                     break;
                 default:
-                    Console.WriteLine("Uncknown Node description: {0}", description);
+                    Console.WriteLine("Unknown Node description: {0}", description);
                     description = " ?";
                     break;
             }
