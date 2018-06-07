@@ -124,7 +124,7 @@ namespace TicTacToe
                     {
                         // play a game against the top individual
                         getBest().printStats();
-                        printFinalStats(start, startDate, avgFitness, bestFitness);
+                        printFinalStats(start, startDate, avgFitness, bestFitness, gen);
                         playHumanVsBest(new Individual(getBest()));
                     }
                 }
@@ -132,7 +132,7 @@ namespace TicTacToe
                 if (getBest().isIdeal(population.getPopSize()))
                 {
                     Console.WriteLine("Found Best Individual!!!");
-                    printFinalStats(start, startDate, avgFitness, bestFitness);
+                    printFinalStats(start, startDate, avgFitness, bestFitness, gen);
                     playHumanVsBest(new Individual(getBest()));
                     break;
                 }
@@ -153,13 +153,13 @@ namespace TicTacToe
             return getBest();
         }
 
-        private void printFinalStats(double start, DateTime startDate, List<double> avgFitness, List<double> bestFitness)
+        private void printFinalStats(double start, DateTime startDate, List<double> avgFitness, List<double> bestFitness, int lastGen)
         {
             Console.WriteLine("Evolution Process Took: " + (currentTimeMillis() - start) / 1000 + " Seconds");
             Console.WriteLine("Start time: " + startDate);
             Console.WriteLine("End time: " + DateTime.Now);
 
-            for (int i = 0; i < maxGenerations - 1; i++)
+            for (int i = 0; i < lastGen; i++)
             {
                 Console.WriteLine("Avg Fitness {0}: {1}", i + 1, avgFitness[i]);
                 Console.WriteLine("Best Fitness {0}: {1}", i + 1, bestFitness[i]);

@@ -375,9 +375,9 @@
             this.bestIndGen.Maximum = 50;
             this.bestIndGen.Name = "bestIndGen";
             this.bestIndGen.Size = new System.Drawing.Size(599, 114);
-            this.bestIndGen.SmallChange = 10;
+            this.bestIndGen.SmallChange = 5;
             this.bestIndGen.TabIndex = 36;
-            this.bestIndGen.TickFrequency = 10;
+            this.bestIndGen.TickFrequency = 5;
             // 
             // label17
             // 
