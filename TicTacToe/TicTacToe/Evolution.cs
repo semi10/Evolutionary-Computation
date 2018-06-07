@@ -82,6 +82,7 @@ namespace TicTacToe
             List<double> bestFitness = new List<double>();
 
             Console.WriteLine("Starting Evolution.....");
+            DateTime startDate = DateTime.Now;
             for (gen = 1; gen <= maxGenerations; ++gen)
             {
                 worker.ReportProgress(gen * 100 / maxGenerations);
@@ -93,44 +94,25 @@ namespace TicTacToe
                 {
                     // play the tournament
 
-                    timer = Stopwatch.StartNew();
 
                     playTournament(worker);
-
-                    timer.Stop();
-                    timespan = timer.Elapsed;
-                    Console.WriteLine(String.Format("playTournament() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
                 }
 
-                timer = Stopwatch.StartNew();
 
                 population.evaluatePopulationFitness();
 
-                timer.Stop();
-                timespan = timer.Elapsed;
-                Console.WriteLine(String.Format("evaluatePopulationFitness() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
 
                 // sort the individuals by their fitness (higher fitness on lower index)
-                timer = Stopwatch.StartNew();
-
                 population.sort();
 
-                timer.Stop();
-                timespan = timer.Elapsed;
-                Console.WriteLine(String.Format("sort() {0:00}:{1:00}:{2:00}", timespan.Minutes, timespan.Seconds, timespan.Milliseconds / 10));
 
                 // record the current generation data to .csv file
                 //writeGenerationData(gen);
-                Console.WriteLine("Generation " + gen + " of " + maxGenerations + ": " + getBest().getPlayerName() + " Fitness: " + getBest().getFitness());
+                Console.WriteLine("Gen " + gen + "/" + maxGenerations + ": " + getBest().getPlayerName() + " Fitness: " + getBest().getFitness());
 
                 // get the time it took to play the tournament (divide by 1000 since the time is in milliseconds)
                 lastRoundTime = (currentTimeMillis() - lastRoundStart) / 1000;
-                Console.WriteLine("Last Round Took " + lastRoundTime + " Seconds");
-                // multiply the last round time by the amount of rounds remaining (all rounds - current round)
-                Console.WriteLine("Estimated Time to finish:");
-                Console.WriteLine("In Minutes: " + (((lastRoundTime) * (maxGenerations - gen)) / 60));
-                Console.WriteLine("In Seconds: " + (((lastRoundTime) * (maxGenerations - gen))));
-
+                Console.WriteLine("Last Round Took " + lastRoundTime + " sec.");
 
                 // add average and best fitness results to an array for graph
                 avgFitness.Add(population.getAvgPopulationFitness());
@@ -142,6 +124,7 @@ namespace TicTacToe
                     {
                         // play a game against the top individual
                         getBest().printStats();
+                        printFinalStats(start, startDate, avgFitness, bestFitness);
                         playHumanVsBest(new Individual(getBest()));
                     }
                 }
@@ -149,6 +132,7 @@ namespace TicTacToe
                 if (getBest().isIdeal(population.getPopSize()))
                 {
                     Console.WriteLine("Found Best Individual!!!");
+                    printFinalStats(start, startDate, avgFitness, bestFitness);
                     playHumanVsBest(new Individual(getBest()));
                     break;
                 }
@@ -160,9 +144,6 @@ namespace TicTacToe
                 //			progressBar.setValue(gen*100/maxGenerations);
             }
 
-            end = currentTimeMillis();
-            Console.WriteLine("Evolution Process Took " + (end - start) / 1000 + " Seconds");
-
 
             if (gen - 1 == maxGenerations)
                 Console.WriteLine("Best attempt: " + getBest());
@@ -170,6 +151,20 @@ namespace TicTacToe
                 Console.WriteLine("Solution: " + getBest());
 
             return getBest();
+        }
+
+        private void printFinalStats(double start, DateTime startDate, List<double> avgFitness, List<double> bestFitness)
+        {
+            Console.WriteLine("Evolution Process Took: " + (currentTimeMillis() - start) / 1000 + " Seconds");
+            Console.WriteLine("Start time: " + startDate);
+            Console.WriteLine("End time: " + DateTime.Now);
+
+            for (int i = 0; i < maxGenerations - 1; i++)
+            {
+                Console.WriteLine("Avg Fitness {0}: {1}", i + 1, avgFitness[i]);
+                Console.WriteLine("Best Fitness {0}: {1}", i + 1, bestFitness[i]);
+                Console.WriteLine();
+            }
         }
 
         public void playTournament(BackgroundWorker worker)
@@ -183,18 +178,15 @@ namespace TicTacToe
                 if (((float)(i * 100) / popSize) % 10 == 0)
                 {
                     // print percentage of population which done competing
-                    Console.WriteLine(" " + (i * 100 / popSize) + "%");
+                    Console.Write(" " + (i * 100 / popSize) + "% ");
                 }
                 for (int j = i + 1; j < popSize; j++)
                 {
                     // play a match with individual at index [i] against individual at index [j]
                     game.playTwoSetMatch(population.getIndividualAtIndex(i), population.getIndividualAtIndex(j));
                 }
-
             }
-            
-
-
+            Console.WriteLine();
         }
 
         public void playHumanVsBest(Individual best)

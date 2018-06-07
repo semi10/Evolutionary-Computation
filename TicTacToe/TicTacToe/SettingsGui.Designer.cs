@@ -80,6 +80,7 @@
             this.label1.Size = new System.Drawing.Size(360, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "Initial Individual Tree Depth";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
