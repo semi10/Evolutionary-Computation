@@ -218,5 +218,35 @@ namespace TicTacToe
         {
 
         }
+
+        private void maxGen_Scroll(object sender, EventArgs e)
+        {
+            label20.Text = maxGen.Value.ToString();
+        }
+
+        private void populationSize_Scroll(object sender, EventArgs e)
+        {
+            label21.Text = populationSize.Value.ToString();
+        }
+
+        private void bestIndGen_Scroll(object sender, EventArgs e)
+        {
+            label22.Text = bestIndGen.Value.ToString();
+        }
+
+        private void amountOfBestInd_Scroll(object sender, EventArgs e)
+        {
+            label23.Text = amountOfBestInd.Value.ToString();
+        }
+
+        private void crossProb_Scroll(object sender, EventArgs e)
+        {
+            label24.Text = ((float)crossProb.Value / 10).ToString();
+        }
+
+        private void mutationProb_Scroll(object sender, EventArgs e)
+        {
+            label25.Text = ((float)mutationProb.Value / 10).ToString();
+        }
     }
 }
