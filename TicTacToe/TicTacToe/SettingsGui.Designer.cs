@@ -441,7 +441,7 @@
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(13, 13);
             this.label23.TabIndex = 45;
-            this.label23.Text = "0";
+            this.label23.Text = "5";
             // 
             // label24
             // 
