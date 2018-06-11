@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsGui));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.mutationProb = new System.Windows.Forms.TrackBar();
             this.label19 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.individualDepth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxInvidualDepth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxGen)).BeginInit();
@@ -69,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bestIndGen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossProb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationProb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -427,11 +430,23 @@
             this.label19.TabIndex = 41;
             this.label19.Text = "0.0                 1.0";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(583, 460);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(569, 184);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
+            // 
             // SettingsGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1844, 977);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.mutationProb);
             this.Controls.Add(this.label18);
@@ -464,6 +479,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "SettingsGui";
             this.Text = "Initialize Evolution";
@@ -475,6 +491,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bestIndGen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossProb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationProb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,5 +531,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TrackBar mutationProb;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
