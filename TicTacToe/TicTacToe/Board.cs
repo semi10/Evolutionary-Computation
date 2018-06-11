@@ -274,6 +274,35 @@ namespace TicTacToe
             return count + 1;
         }
 
+        //public int countDiagSec(int index, int playerNum)
+        //{
+        //    /*
+        //     * count amount of pieces with playerNum value in the same
+        //     * upper left to bottom right diagonal that the index is in
+        //     */
+        //    int count = 0;
+        //    int runner = index;
+        //    // find the starting position (run left and down until reaching bottom or left boundary)
+        //    // if runner+SIZE-1 equals or greater than SIZE*SIZE, we reached the bottom border
+        //    // if runner % SIZE equals zero, reached left border
+        //    while (runner + SIZE - 1 < SIZE * SIZE && runner % SIZE != 0)
+        //    {
+        //        runner = runner + SIZE - 1;
+        //    }
+        //    // run until reaching the top border
+        //    // if runner equals or greater than SIZE*SIZE, we passed the bottom border
+        //    while (runner >= 0)
+        //    {
+        //        if (board[runner] == playerNum)
+        //            count++;
+        //        // if runner % SIZE equals SIZE-1, we have reached the right border, stop counting
+        //        if (runner % SIZE == SIZE - 1)
+        //            break;
+        //        runner = runner - SIZE + 1;
+        //    }
+        //    return count;
+        //}
+
         public int countDiagSecStreak(int index, int playerNum)
         {
             /*
@@ -310,6 +339,19 @@ namespace TicTacToe
             return count + 1;
         }
 
+        //public int countCorners(int playerNum)
+        //{
+        //    int count = 0;
+        //    if (board[0] == playerNum)
+        //        count++;
+        //    if (board[SIZE - 1] == playerNum)
+        //        count++;
+        //    if (board[SIZE * SIZE - SIZE] == playerNum)
+        //        count++;
+        //    if (board[SIZE * SIZE - 1] == playerNum)
+        //        count++;
+        //    return count;
+        //}
 
         public int checkWin(Individual player)
         {
