@@ -248,5 +248,10 @@ namespace TicTacToe
         {
             label25.Text = ((float)mutationProb.Value / 10).ToString();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

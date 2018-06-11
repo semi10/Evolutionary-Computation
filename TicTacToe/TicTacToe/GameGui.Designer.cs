@@ -43,7 +43,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(16, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(968, 58);
+            this.menuStrip1.Size = new System.Drawing.Size(968, 55);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -53,7 +53,7 @@
             this.anotherGameToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(107, 48);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(107, 45);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // anotherGameToolStripMenuItem
@@ -72,8 +72,8 @@
             // 
             // GameGui
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(968, 911);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

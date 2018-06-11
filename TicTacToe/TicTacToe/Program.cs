@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
+
+
     static class Program
     {
         /// <summary>
@@ -14,9 +16,12 @@ namespace TicTacToe
         [STAThread]
         static void Main()
         {
+            if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SettingsGui());
+            Application.Run(new SettingsGui());            // Edit as needed
         }
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
     }
 }
