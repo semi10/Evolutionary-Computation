@@ -11,8 +11,10 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
+
     public partial class SettingsGui : Form
     {
+
         private int initialDepth = 4;
         private int maxDepth = 6;
         private bool selectRandomMaxIndex = true; // choose whether to select first maximal value index or a random (if there are multiples)
@@ -252,6 +254,24 @@ namespace TicTacToe
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void SettingsGui_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

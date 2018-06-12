@@ -155,7 +155,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1299, 217);
+            this.label6.Location = new System.Drawing.Point(1299, 207);
             this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(451, 32);
@@ -175,7 +175,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1323, 606);
+            this.label9.Location = new System.Drawing.Point(1396, 629);
             this.label9.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(267, 32);
@@ -201,7 +201,7 @@
             // 
             this.label10.AccessibleName = "";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(611, 240);
+            this.label10.Location = new System.Drawing.Point(616, 210);
             this.label10.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(175, 32);
@@ -212,7 +212,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(861, 240);
+            this.label11.Location = new System.Drawing.Point(866, 210);
             this.label11.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(176, 32);
@@ -229,7 +229,7 @@
             "Plus",
             "Minus",
             "Multi"});
-            this.funcSet.Location = new System.Drawing.Point(609, 289);
+            this.funcSet.Location = new System.Drawing.Point(614, 259);
             this.funcSet.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.funcSet.Name = "funcSet";
             this.funcSet.Size = new System.Drawing.Size(172, 169);
@@ -251,7 +251,7 @@
             "PrimaryDiagStreak",
             "SecDiagStreak",
             "RandVal"});
-            this.terminalSet.Location = new System.Drawing.Point(867, 289);
+            this.terminalSet.Location = new System.Drawing.Point(872, 259);
             this.terminalSet.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.terminalSet.Name = "terminalSet";
             this.terminalSet.Size = new System.Drawing.Size(313, 334);
@@ -265,6 +265,7 @@
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(600, 69);
             this.progressBar2.TabIndex = 23;
+            this.progressBar2.Click += new System.EventHandler(this.progressBar2_Click);
             // 
             // backgroundWorker1
             // 
@@ -288,7 +289,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1307, 415);
+            this.label12.Location = new System.Drawing.Point(1378, 396);
             this.label12.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(285, 32);
@@ -372,7 +373,7 @@
             // 
             // amountOfBestInd
             // 
-            this.amountOfBestInd.Location = new System.Drawing.Point(1307, 256);
+            this.amountOfBestInd.Location = new System.Drawing.Point(1307, 246);
             this.amountOfBestInd.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.amountOfBestInd.Maximum = 50;
             this.amountOfBestInd.Name = "amountOfBestInd";
@@ -385,7 +386,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1342, 328);
+            this.label16.Location = new System.Drawing.Point(1342, 318);
             this.label16.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(413, 32);
@@ -411,14 +412,14 @@
             this.label17.Location = new System.Drawing.Point(646, 797);
             this.label17.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(504, 32);
+            this.label17.Size = new System.Drawing.Size(560, 32);
             this.label17.TabIndex = 37;
-            this.label17.Text = "0                                                               50";
+            this.label17.Text = "0                                                                       50";
             // 
             // crossProb
             // 
             this.crossProb.LargeChange = 1;
-            this.crossProb.Location = new System.Drawing.Point(1307, 468);
+            this.crossProb.Location = new System.Drawing.Point(1307, 456);
             this.crossProb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.crossProb.Name = "crossProb";
             this.crossProb.Size = new System.Drawing.Size(419, 114);
@@ -428,7 +429,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1342, 544);
+            this.label18.Location = new System.Drawing.Point(1342, 537);
             this.label18.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(382, 32);
@@ -438,7 +439,7 @@
             // mutationProb
             // 
             this.mutationProb.LargeChange = 1;
-            this.mutationProb.Location = new System.Drawing.Point(1315, 656);
+            this.mutationProb.Location = new System.Drawing.Point(1315, 685);
             this.mutationProb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.mutationProb.Name = "mutationProb";
             this.mutationProb.Size = new System.Drawing.Size(411, 114);
@@ -448,7 +449,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(1342, 733);
+            this.label19.Location = new System.Drawing.Point(1342, 762);
             this.label19.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(382, 32);
@@ -488,7 +489,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(1753, 259);
+            this.label23.Location = new System.Drawing.Point(1753, 249);
             this.label23.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(31, 32);
@@ -498,7 +499,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(1742, 468);
+            this.label24.Location = new System.Drawing.Point(1742, 461);
             this.label24.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(55, 32);
@@ -508,7 +509,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1742, 664);
+            this.label25.Location = new System.Drawing.Point(1742, 693);
             this.label25.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(55, 32);
@@ -525,6 +526,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1850, 178);
             this.panel1.TabIndex = 49;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox2
             // 
@@ -574,10 +576,10 @@
             this.label26.Location = new System.Drawing.Point(11, 14);
             this.label26.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(1329, 34);
+            this.label26.Size = new System.Drawing.Size(1335, 34);
             this.label26.TabIndex = 51;
-            this.label26.Text = "Deveoped By: Vaknin Matan, Hazan Nofar, Faifman Semion, Maidanik Freddy,  Bromber" +
-    "g Daniel.";
+            this.label26.Text = "Developed By: Vaknin Matan, Hazan Nofar, Faifman Semion, Maidanik Freddy,  Brombe" +
+    "rg Daniel.";
             // 
             // SettingsGui
             // 
@@ -629,6 +631,7 @@
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "SettingsGui";
             this.Text = "Initialize Evolution";
+            this.Load += new System.EventHandler(this.SettingsGui_Load);
             ((System.ComponentModel.ISupportInitialize)(this.individualDepth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxInvidualDepth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxGen)).EndInit();
