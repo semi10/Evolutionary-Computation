@@ -44,7 +44,7 @@ namespace TicTacToe
             {
                 cell[i] = new Button();
                 cell[i].Size = cellSize;
-                cell[i].Top = cellSize.Height * (i / (int)Math.Sqrt(BOARD_SIZE + 10))+55;
+                cell[i].Top = cellSize.Height * (i / (int)Math.Sqrt(BOARD_SIZE + 10))+(Screen.PrimaryScreen.Bounds.Height / 30);
                 cell[i].Left = cellSize.Width* (i % (int)Math.Sqrt(BOARD_SIZE));
                 cell[i].Click += new System.EventHandler(cellClick);
                 cell[i].Name = Convert.ToString(i);
