@@ -15,8 +15,8 @@ namespace TicTacToe
         private Game game;
         private Individual playerOne;
         private Individual playerTwo;
-        private readonly int HORIZONTAL_MARGIN = 192;
-        private readonly int VERTICAL_MARGIN = 170;
+        private readonly int HORIZONTAL_MARGIN = Screen.PrimaryScreen.Bounds.Width/20;
+        private readonly int VERTICAL_MARGIN = Screen.PrimaryScreen.Bounds.Height/13;
         private readonly int BOARD_SIZE = 25;
         private int playerTurn = 1;
         private int SIZE = 5;
