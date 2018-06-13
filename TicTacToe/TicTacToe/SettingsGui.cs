@@ -49,7 +49,7 @@ namespace TicTacToe
                 terminalSet.SetItemChecked(i, true);
             }
 
-            for (int i = 0; i < funcSet.Items.Count; i++)
+            for (int i = 0; i < 2; i++)   // for (int i = 0; i < funcSet.Items.Count; i++)
             {
                 funcSet.SetItemChecked(i, true);
             }

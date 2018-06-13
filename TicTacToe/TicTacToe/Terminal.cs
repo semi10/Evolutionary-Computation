@@ -83,9 +83,9 @@ namespace TicTacToe
             // all methods but the countCorners receives 2 arguments:
             // index argument and playerNum argument which represent looking for a friend or an enemy
             if (terminalIdentity.Equals("WinMove", StringComparison.OrdinalIgnoreCase))
-                grade = (board.willWinBlock(index, playerNum)) ? 99999 : 0;
+                grade = (board.willWinBlock(index, playerNum)) ? 1 : 0;
             if (terminalIdentity.Equals("LoseMove", StringComparison.OrdinalIgnoreCase))
-                grade = (board.willWinBlock(index, playerNum % 2 + 1)) ? 33333 : 0;
+                grade = (board.willWinBlock(index, playerNum % 2 + 1)) ? 1 : 0;
             if (terminalIdentity.Equals("NeightborsAmount", StringComparison.OrdinalIgnoreCase))
                 grade = board.countNeighbors(index, playerNum);
             if (terminalIdentity.Equals("RowAmount", StringComparison.OrdinalIgnoreCase))
